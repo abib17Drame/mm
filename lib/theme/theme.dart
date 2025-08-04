@@ -21,7 +21,7 @@ class AppTheme {
     ),
 
     // Thème pour les cartes (Card).
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 4,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       shape: RoundedRectangleBorder(

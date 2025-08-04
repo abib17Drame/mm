@@ -143,7 +143,6 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
           titre,
           style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
-          textDirection: TextDirection.rtl, // Assure que le texte arabe est bien aligné.
         ),
         onTap: () {
           int idJour = LogiqueDate.rechercheIdJour(_session, _dateAffichee);
