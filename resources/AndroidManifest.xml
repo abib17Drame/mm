@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="3"
+    android:versionName="2.0"
+    package="info.cam.cam.khatma_app"
+    platformBuildVersionCode="23"
+    platformBuildVersionName="6.0-2166767">
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="23"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <application
+        android:theme="@style/AppTheme"
+        android:label="ختمة الإدارة"
+        android:icon="@drawable/khatma"
+        android:allowBackup="true">
+        <activity
+            android:label="ختمة الإدارة"
+            android:name="info.cam.cam.khatma_app.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="دعاء ختم القرآن الكريم"
+            android:name="info.cam.cam.khatma_app.Duaa"/>
+        <activity
+            android:label="ختمة الإدارة"
+            android:name="info.cam.cam.khatma_app.Quran"/>
+        <activity
+            android:label="ختمة الإدارة"
+            android:name="info.cam.cam.khatma_app.ZoomQuran"/>
+        <activity
+            android:label="من نحن"
+            android:name="info.cam.cam.khatma_app.Apropos"/>
+        <activity
+            android:label="تواريخ الختمات القادمة"
+            android:name="info.cam.cam.khatma_app.DernierDate"/>
+        <activity
+            android:label="عن الختمة"
+            android:name="info.cam.cam.khatma_app.Infokhatma"/>
+        <activity
+            android:label="ختمة الإدارة"
+            android:name="info.cam.cam.khatma_app.ListeAhzab"/>
+    </application>
+</manifest>
