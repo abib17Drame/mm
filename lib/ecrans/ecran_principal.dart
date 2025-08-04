@@ -143,6 +143,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
           titre,
           style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
+          textDirection: TextDirection.rtl, // Assure que le texte arabe est bien aligné.
         ),
         onTap: () {
           int idJour = LogiqueDate.rechercheIdJour(_session, _dateAffichee);
@@ -188,11 +189,9 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
     );
   }
 
-  /// Calcule l'ID de la section du Coran à afficher.
-  /// La logique est une reconstruction basée sur `visualisationQuran` du code Java.
+  /// Calcule l'ID de la section du Coran à afficher, en se basant sur le jour du cycle et la position dans la liste.
+  /// Cette logique est une traduction directe de la méthode `visualisationQuran` de l'application Java originale.
   int _calculerIdCoran(int idJour, int positionDansListe) {
-    // La logique originale est un grand switch-case. On la reproduit ici.
-    // C'est verbeux mais fidèle à l'original.
     switch (idJour) {
       case 1:
         if (positionDansListe == 1) return 59;
@@ -204,13 +203,111 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         if (positionDansListe == 2) return 3;
         if (positionDansListe == 3) return 4;
         break;
-      // ... et ainsi de suite pour les 21 jours.
-      // Pour la démo, on ne complète pas tout, mais on montre le principe.
+      case 3:
+        // Le jour 3 (Vendredi) a une logique spéciale, le premier item est "Sourate Al-Kahf"
+        // qui n'est pas une section numérotée de la même manière. On pourrait lui assigner un ID spécial si nécessaire.
+        // Pour l'instant on ne retourne rien pour la sourate et on mappe les deux autres.
+        if (positionDansListe == 1) return 0; // Pas d'ID pour sourate Al-Kahf dans ce contexte
+        if (positionDansListe == 2) return 5;
+        if (positionDansListe == 3) return 6;
+        break;
+      case 4:
+        if (positionDansListe == 1) return 7;
+        if (positionDansListe == 2) return 8;
+        if (positionDansListe == 3) return 9;
+        break;
+      case 5:
+        if (positionDansListe == 1) return 10;
+        if (positionDansListe == 2) return 11;
+        if (positionDansListe == 3) return 12;
+        break;
+      case 6:
+        if (positionDansListe == 1) return 13;
+        if (positionDansListe == 2) return 14;
+        if (positionDansListe == 3) return 15;
+        break;
+      case 7:
+        if (positionDansListe == 1) return 16;
+        if (positionDansListe == 2) return 17;
+        if (positionDansListe == 3) return 18;
+        break;
+      case 8:
+        if (positionDansListe == 1) return 19;
+        if (positionDansListe == 2) return 20;
+        if (positionDansListe == 3) return 21;
+        break;
+      case 9:
+        if (positionDansListe == 1) return 22;
+        if (positionDansListe == 2) return 23;
+        if (positionDansListe == 3) return 24;
+        break;
+      case 10:
+         // Le jour 10 (Vendredi) a aussi la sourate Al-Kahf
+        if (positionDansListe == 1) return 0;
+        if (positionDansListe == 2) return 25;
+        if (positionDansListe == 3) return 26;
+        break;
+      case 11:
+        if (positionDansListe == 1) return 27;
+        if (positionDansListe == 2) return 28;
+        if (positionDansListe == 3) return 29;
+        break;
+      case 12:
+        if (positionDansListe == 1) return 30;
+        if (positionDansListe == 2) return 31;
+        if (positionDansListe == 3) return 32;
+        break;
+      case 13:
+        if (positionDansListe == 1) return 33;
+        if (positionDansListe == 2) return 34;
+        if (positionDansListe == 3) return 35;
+        break;
+      case 14:
+        if (positionDansListe == 1) return 36;
+        if (positionDansListe == 2) return 37;
+        if (positionDansListe == 3) return 38;
+        break;
+      case 15:
+        if (positionDansListe == 1) return 39;
+        if (positionDansListe == 2) return 40;
+        if (positionDansListe == 3) return 41;
+        break;
+      case 16:
+        if (positionDansListe == 1) return 42;
+        if (positionDansListe == 2) return 43;
+        if (positionDansListe == 3) return 44;
+        break;
+      case 17:
+        // Le jour 17 (Vendredi) a aussi la sourate Al-Kahf
+        if (positionDansListe == 1) return 0;
+        if (positionDansListe == 2) return 45;
+        if (positionDansListe == 3) return 46;
+        break;
+      case 18:
+        if (positionDansListe == 1) return 47;
+        if (positionDansListe == 2) return 48;
+        if (positionDansListe == 3) return 49;
+        break;
+      case 19:
+        if (positionDansListe == 1) return 50;
+        if (positionDansListe == 2) return 51;
+        if (positionDansListe == 3) return 52;
+        break;
+      case 20:
+        if (positionDansListe == 1) return 53;
+        if (positionDansListe == 2) return 54;
+        if (positionDansListe == 3) return 55;
+        break;
+      case 21:
+        if (positionDansListe == 1) return 56;
+        if (positionDansListe == 2) return 57;
+        if (positionDansListe == 3) return 58;
+        break;
       default:
-        // Retourne 0 ou un ID invalide si non trouvé.
+        // Retourne 0 si le jour n'est pas dans le cycle de 1 à 21.
         return 0;
     }
-    return 0;
+    return 0; // Au cas où une condition n'est pas remplie.
   }
 
   /// Construit le menu de navigation latéral (Drawer).

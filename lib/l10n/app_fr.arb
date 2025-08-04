@@ -1,0 +1,44 @@
+{
+    "@@locale": "fr",
+    "appTitle": "Khatma Flutter",
+    "dailyKhatma": "Khatma Quotidienne",
+    "navigationMenu": "Menu de navigation",
+    "hizbList": "Liste des Ahzab",
+    "khatmaDates": "Dates des prochaines Khatmas",
+    "quranRecitation": "Duaa Khatm Al-Quran",
+    "aboutKhatma": "À propos de la Khatma",
+    "aboutUs": "À propos de nous",
+    "quranReadingTitle": "Lecture du Coran (Section {id})",
+    "@quranReadingTitle": {
+        "description": "Titre pour l'écran de lecture du Coran, avec un placeholder pour l'ID de la section",
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "next": "Suivant",
+    "previous": "Précédent",
+    "dataNotAvailable": "Données non disponibles.",
+    "error": "Erreur",
+    "noDates": "Aucune date à afficher.",
+    "version": "Version",
+    "aboutAppText": "Cette application est une réimplémentation en Flutter de l'application originale Khatma App.",
+    "khatmaDateTitle": "Khatma {index}",
+    "@khatmaDateTitle": {
+        "placeholders": {
+            "index": {
+                "type": "int"
+            }
+        }
+    },
+    "quranSectionError": "Les images pour la section {id} n'ont pas pu être chargées. Seules les images pour la section 1 sont incluses dans cet exemple.",
+    "@quranSectionError": {
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "unimplementedNavigation": "La navigation pour cette section n'est pas encore implémentée."
+}

@@ -44,6 +44,17 @@ class EcranQuran extends StatelessWidget {
                     child: Image.asset(
                       pages[index],
                       fit: BoxFit.contain, // L'image s'adapte à l'écran.
+                      // Affiche un indicateur de chargement pendant que l'image charge.
+                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
                       // Affiche une icône d'erreur si l'image ne peut pas être chargée.
                       errorBuilder: (context, error, stackTrace) {
                         return const Center(child: Icon(Icons.error_outline, color: Colors.red, size: 50));

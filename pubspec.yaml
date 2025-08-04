@@ -10,12 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
+  flutter_localizations: # Ajout pour la localisation
     sdk: flutter
   sqflite: ^2.2.8+4
-  sqflite_common_ffi: ^2.3.2
   path_provider: ^2.0.15
-  intl: ^0.20.2
+  intl: ^0.18.1 # Version mise à jour pour compatibilité
+  provider: ^6.0.5 # Ajout pour la gestion de l'état de la locale
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +30,7 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
+  generate: true # Active la génération de code pour l'internationalisation
 
   assets:
     - assets/images/

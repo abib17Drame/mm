@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma_flutter/l10n/app_localizations.dart';
 import '../auxiliaires/donnees_statiques.dart';
 
 /// Écran affichant le Duaa (prière) de la ختم القرآن.
@@ -7,11 +8,12 @@ class EcranDuaa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final String duaa = DonneesStatiques.getDuaa();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Duaa Khatm Al-Quran'),
+        title: Text(localizations.quranRecitation),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

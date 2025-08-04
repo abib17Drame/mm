@@ -1,0 +1,44 @@
+{
+    "@@locale": "ar",
+    "appTitle": "ختمة فلاتر",
+    "dailyKhatma": "الختمة اليومية",
+    "navigationMenu": "قائمة التنقل",
+    "hizbList": "قائمة الأحزاب",
+    "khatmaDates": "تواريخ الختمات القادمة",
+    "quranRecitation": "دعاء ختم القرآن",
+    "aboutKhatma": "عن الختمة",
+    "aboutUs": "عنا",
+    "quranReadingTitle": "قراءة القرآن (الجزء {id})",
+    "@quranReadingTitle": {
+        "description": "Title for the Quran reading screen, with a placeholder for the section ID",
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "next": "التالي",
+    "previous": "السابق",
+    "dataNotAvailable": "البيانات غير متوفرة.",
+    "error": "خطأ",
+    "noDates": "لا تواريخ لعرضها.",
+    "version": "الإصدار",
+    "aboutAppText": "هذا التطبيق هو إعادة تنفيذ لتطبيق ختمة الأصلي باستخدام فلاتر.",
+    "khatmaDateTitle": "ختمة {index}",
+    "@khatmaDateTitle": {
+        "placeholders": {
+            "index": {
+                "type": "int"
+            }
+        }
+    },
+    "quranSectionError": "تعذر تحميل الصور للجزء {id}. يتضمن هذا المثال الصور للجزء 1 فقط.",
+    "@quranSectionError": {
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "unimplementedNavigation": "التنقل لهذا القسم لم يتم تنفيذه بعد."
+}

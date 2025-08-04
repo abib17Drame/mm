@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma_flutter/l10n/app_localizations.dart';
 import '../auxiliaires/donnees_statiques.dart';
 
 /// Écran affichant la liste complète des 60 Ahzab du Coran.
@@ -7,11 +8,12 @@ class EcranListeAhzab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final List<String> ahzab = DonneesStatiques.getListeAhzab();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Liste des Ahzab'),
+        title: Text(localizations.hizbList),
       ),
       body: ListView.builder(
         itemCount: ahzab.length,

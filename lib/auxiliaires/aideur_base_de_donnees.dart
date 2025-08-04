@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
 import '../modeles/khatma.dart';
 
@@ -35,10 +34,6 @@ class AideurBaseDeDonnees {
 
   /// Initialise la base de données : chemin, création et peuplement.
   _initDatabase() async {
-    // Initialise sqflite_ffi pour Windows
-    sqfliteFfiInit();
-    databaseFactory = databaseFactoryFfi;
-    
     String path = join(await getDatabasesPath(), _nomBaseDeDonnees);
     return await openDatabase(path,
         version: _versionBaseDeDonnees,
