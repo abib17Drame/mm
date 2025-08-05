@@ -1,0 +1,45 @@
+name: khatma_flutter
+description: Une application pour suivre la lecture du Coran selon le programme "Khatma de l'Administration".
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # Ajout pour la localisation
+    sdk: flutter
+  sqflite: ^2.2.8+4
+  sqflite_common_ffi: ^2.3.6
+  path_provider: ^2.0.15
+  intl: ^0.20.2 # Version mise à jour pour compatibilité
+  provider: ^6.0.5 # Ajout pour la gestion de l'état de la locale
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/ic_launcher.png"
+
+flutter:
+  uses-material-design: true
+  generate: true # Active la génération de code pour l'internationalisation
+
+  assets:
+    - assets/images/
+    - assets/icon/
+
+flutter_intl:
+  enabled: true
+  class_name: AppLocalizations
+  main_locale: en
+  arb_dir: lib/l10n
+  output_dir: lib/l10n/generated

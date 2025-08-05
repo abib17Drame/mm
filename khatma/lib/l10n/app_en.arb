@@ -1,0 +1,80 @@
+{
+    "@@locale": "en",
+    "appTitle": "Khatma Flutter",
+    "dailyKhatma": "Daily Khatma",
+    "navigationMenu": "Navigation Menu",
+    "hizbList": "Hizb List",
+    "khatmaDates": "Next Khatma Dates",
+    "quranRecitation": "Quran Completion Duaa",
+    "aboutKhatma": "About Khatma",
+    "aboutUs": "About Us",
+    "quranReadingTitle": "Quran Reading (Section {id})",
+    "@quranReadingTitle": {
+        "description": "Title for the Quran reading screen, with a placeholder for the section ID",
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "next": "Next",
+    "previous": "Previous",
+    "dataNotAvailable": "Data not available.",
+    "error": "Error",
+    "noDates": "No dates to display.",
+    "version": "Version",
+    "aboutAppText": "This application is a Flutter reimplementation of the original Khatma App.",
+    "khatmaDateTitle": "Khatma {index}",
+    "@khatmaDateTitle": {
+        "placeholders": {
+            "index": {
+                "type": "int"
+            }
+        }
+    },
+    "quranSectionError": "Images for section {id} could not be loaded. Only images for section 1 are included in this example.",
+    "@quranSectionError": {
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "unimplementedNavigation": "Navigation for this section is not yet implemented.",
+    "quranSectionNotAvailable": "Section {id} not available",
+    "@quranSectionNotAvailable": {
+        "description": "Message displayed when a Quran section is not available",
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "quranSectionInfo": "This section of the Quran is not yet available in this version of the application.",
+    "goBack": "Back",
+    "imageNotAvailable": "Image not available",
+    "language": "Language",
+    "currentLanguage": "English",
+    "pageNavigation": "Page Navigation",
+    "pageInfo": "Page {current} of {total}",
+    "@pageInfo": {
+        "description": "Information about the current page",
+        "placeholders": {
+            "current": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "hizbCompleted": "Hizb Completed",
+    "hizbCompletionMessage": "Congratulations! You have completed this hizb.",
+    "continueToNextHizb": "Would you like to continue to the next hizb?",
+    "markDayCompleted": "Mark Day as Completed",
+    "continueReading": "Continue",
+    "stayHere": "Stay Here",
+    "dayMarkedCompleted": "Day marked as completed!",
+    "yes": "Yes",
+    "no": "No"
+} 

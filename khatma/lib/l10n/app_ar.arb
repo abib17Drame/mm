@@ -1,0 +1,80 @@
+{
+    "@@locale": "ar",
+    "appTitle": "ختمة فلاتر",
+    "dailyKhatma": "الختمة اليومية",
+    "navigationMenu": "قائمة التنقل",
+    "hizbList": "قائمة الأحزاب",
+    "khatmaDates": "تواريخ الختمات القادمة",
+    "quranRecitation": "دعاء ختم القرآن",
+    "aboutKhatma": "عن الختمة",
+    "aboutUs": "عنا",
+    "quranReadingTitle": "قراءة القرآن (الجزء {id})",
+    "@quranReadingTitle": {
+        "description": "Title for the Quran reading screen, with a placeholder for the section ID",
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "next": "التالي",
+    "previous": "السابق",
+    "dataNotAvailable": "البيانات غير متوفرة.",
+    "error": "خطأ",
+    "noDates": "لا تواريخ لعرضها.",
+    "version": "الإصدار",
+    "aboutAppText": "هذا التطبيق هو إعادة تنفيذ لتطبيق ختمة الأصلي باستخدام فلاتر.",
+    "khatmaDateTitle": "ختمة {index}",
+    "@khatmaDateTitle": {
+        "placeholders": {
+            "index": {
+                "type": "int"
+            }
+        }
+    },
+    "quranSectionError": "تعذر تحميل الصور للجزء {id}. يتضمن هذا المثال الصور للجزء 1 فقط.",
+    "@quranSectionError": {
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "unimplementedNavigation": "التنقل لهذا القسم لم يتم تنفيذه بعد.",
+    "quranSectionNotAvailable": "الجزء {id} غير متوفر",
+    "@quranSectionNotAvailable": {
+        "description": "Message affiché quand une section du Coran n'est pas disponible",
+        "placeholders": {
+            "id": {
+                "type": "int"
+            }
+        }
+    },
+    "quranSectionInfo": "هذا الجزء من القرآن غير متوفر في هذه النسخة من التطبيق.",
+    "goBack": "رجوع",
+    "imageNotAvailable": "الصورة غير متوفرة",
+    "language": "اللغة",
+    "currentLanguage": "العربية",
+    "pageNavigation": "تنقل الصفحات",
+    "pageInfo": "صفحة {current} من {total}",
+    "@pageInfo": {
+        "description": "Information sur la page actuelle",
+        "placeholders": {
+            "current": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "hizbCompleted": "الحزب مكتمل",
+    "hizbCompletionMessage": "تهانينا ! لقد أكملت هذا الحزب.",
+    "continueToNextHizb": "هل تريد المتابعة إلى الحزب التالي؟",
+    "markDayCompleted": "تحديد اليوم كمكتمل",
+    "continueReading": "متابعة",
+    "stayHere": "البقاء هنا",
+    "dayMarkedCompleted": "تم تحديد اليوم كمكتمل !",
+    "yes": "نعم",
+    "no": "لا"
+}
