@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import '../auxiliaires/logique_date.dart';
 import '../auxiliaires/aideur_base_de_donnees.dart';
+import '../auxiliaires/donnees_statiques.dart';
 import '../l10n/app_localizations.dart';
 
 /// Écran affichant les dates des 10 prochaines Khatmas.
@@ -178,7 +179,6 @@ class _EcranDatesKhatmaState extends State<EcranDatesKhatma> {
           }
 
           final dates = snapshot.data!;
-          final format = DateFormat('EEEE d MMMM yyyy', 'fr_FR');
 
           return Container(
             decoration: BoxDecoration(
@@ -234,6 +234,7 @@ class _EcranDatesKhatmaState extends State<EcranDatesKhatma> {
                       itemBuilder: (context, index) {
                         final date = dates[index];
                         final cardColor = _getCardColor(index);
+                        final datesBilingues = DonneesStatiques.formaterDateBilingue(date);
                         
                         return Container(
                           margin: const EdgeInsets.only(bottom: 16),
@@ -271,25 +272,27 @@ class _EcranDatesKhatmaState extends State<EcranDatesKhatma> {
                                       ],
                                     ),
                                     const SizedBox(height: 16),
-                                    // Date principale
+                                    // Date en français
                                     Text(
-                                      format.format(date),
+                                      datesBilingues['francais']!,
                                       style: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    const SizedBox(height: 8),
-                                    // Jour de la semaine
+                                    const SizedBox(height: 12),
+                                    // Date en arabe
                                     Text(
-                                      DateFormat('EEEE', 'fr_FR').format(date),
-                                      style: TextStyle(
-                                        color: Colors.white.withOpacity(0.8),
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic,
+                                      datesBilingues['arabe']!,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Arial',
                                       ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ],
                                 ),

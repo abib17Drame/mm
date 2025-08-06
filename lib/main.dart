@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
       child: Consumer2<LocaleProvider, ThemeProvider>(
         builder: (context, localeProvider, themeProvider, child) {
           return MaterialApp(
-            title: 'Khatma Flutter',
+            title: 'حزب الإدارة',
             theme: themeProvider.theme,
 
             // Configuration pour la localisation en français (et arabe implicitement par la direction du texte).

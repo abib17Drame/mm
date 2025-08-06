@@ -9,7 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appTitle => 'ختمة فلاتر';
+  String get appTitle => 'حزب الإدارة';
 
   @override
   String get dailyKhatma => 'الختمة اليومية';
@@ -125,4 +125,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get no => 'لا';
+
+  @override
+  String get hizb60Completed => 'الحزب 60 مكتمل';
+
+  @override
+  String get hizb60CompletionMessage => 'تهانينا ! لقد أكملت آخر حزب في القرآن.';
+
+  @override
+  String get continueToDuaa => 'هل تريد المتابعة إلى دعاء ختم القرآن؟';
+
+  @override
+  String get khatmaCompleted => 'الختمة مكتملة';
+
+  @override
+  String get khatmaCompletionMessage => 'تهانينا ! لقد أكملت الختمة كاملة.';
+
+  @override
+  String get continueToNewKhatma => 'هل تريد بدء ختمة جديدة؟';
 }

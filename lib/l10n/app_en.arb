@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "appTitle": "Khatma Flutter",
+    "appTitle": "حزب الإدارة",
     "dailyKhatma": "Daily Khatma",
     "navigationMenu": "Navigation Menu",
     "hizbList": "Hizb List",
@@ -76,5 +76,11 @@
     "stayHere": "Stay Here",
     "dayMarkedCompleted": "Day marked as completed!",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "hizb60Completed": "Hizb 60 Completed",
+    "hizb60CompletionMessage": "Congratulations! You have completed the last hizb of the Quran.",
+    "continueToDuaa": "Would you like to continue to the Duaa of Khatm Al-Quran?",
+    "khatmaCompleted": "Khatma Completed",
+    "khatmaCompletionMessage": "Congratulations! You have completed the full Khatma.",
+    "continueToNewKhatma": "Would you like to start a new Khatma?"
 } 

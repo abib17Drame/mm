@@ -14,6 +14,8 @@ class EcranListeAhzab extends StatefulWidget {
 
 class _EcranListeAhzabState extends State<EcranListeAhzab> {
   late ScrollController _scrollController;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
 
   @override
   void initState() {
@@ -24,6 +26,7 @@ class _EcranListeAhzabState extends State<EcranListeAhzab> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -42,8 +45,24 @@ class _EcranListeAhzabState extends State<EcranListeAhzab> {
     final theme = Theme.of(context);
     final List<String> ahzab = DonneesStatiques.getListeAhzab();
     
-    // Utiliser tous les ahzab de 1 à 60
-    final List<String> ahzabFiltres = ahzab; // Ahzab 1 à 60
+    // Filtrer les ahzab selon la recherche
+    final List<MapEntry<int, String>> ahzabFiltres = ahzab.asMap().entries
+        .where((entry) {
+          final index = entry.key + 1; // Numéro du Hizb (1-60)
+          final ahzabName = entry.value;
+          
+          if (_searchQuery.isEmpty) return true;
+          
+          // Recherche par numéro de Hizb
+          if (_searchQuery.isNotEmpty && index.toString().contains(_searchQuery)) {
+            return true;
+          }
+          
+          // Recherche par nom de Hizb (seulement le titre, pas les détails des versets)
+          final hizbTitle = ahzabName.split('\n').first; // Prend seulement la première ligne
+          return hizbTitle.toLowerCase().contains(_searchQuery.toLowerCase());
+        })
+        .toList();
 
     return Focus(
       autofocus: true,
@@ -146,7 +165,7 @@ class _EcranListeAhzabState extends State<EcranListeAhzab> {
                       ),
                       const SizedBox(width: 12),
                                              Text(
-                         'Ahzab du Coran',
+                         'أحزاب القرآن',
                          style: theme.textTheme.headlineSmall?.copyWith(
                            fontWeight: FontWeight.bold,
                            color: theme.colorScheme.primary,
@@ -155,16 +174,77 @@ class _EcranListeAhzabState extends State<EcranListeAhzab> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                // Liste des ahzab
-                Expanded(
+                                 const SizedBox(height: 24),
+                 
+                 // Barre de recherche
+                 Container(
+                   margin: const EdgeInsets.only(bottom: 16),
+                   decoration: BoxDecoration(
+                     color: Colors.white,
+                     borderRadius: BorderRadius.circular(12),
+                     boxShadow: [
+                       BoxShadow(
+                         color: Colors.black.withOpacity(0.1),
+                         blurRadius: 4,
+                         offset: const Offset(0, 2),
+                       ),
+                     ],
+                   ),
+                   child: TextField(
+                     controller: _searchController,
+                     onChanged: (value) {
+                       setState(() {
+                         _searchQuery = value;
+                       });
+                     },
+                     decoration: InputDecoration(
+                       hintText: 'البحث عن رقم الحزب أو الاسم...',
+                       hintStyle: TextStyle(
+                         color: Colors.grey[600],
+                         fontSize: 16,
+                       ),
+                       prefixIcon: Icon(
+                         Icons.search,
+                         color: theme.colorScheme.primary,
+                       ),
+                       suffixIcon: _searchQuery.isNotEmpty
+                           ? IconButton(
+                               icon: Icon(
+                                 Icons.clear,
+                                 color: Colors.grey[600],
+                               ),
+                               onPressed: () {
+                                 setState(() {
+                                   _searchController.clear();
+                                   _searchQuery = '';
+                                 });
+                               },
+                             )
+                           : null,
+                       border: InputBorder.none,
+                       contentPadding: const EdgeInsets.symmetric(
+                         horizontal: 16,
+                         vertical: 12,
+                       ),
+                     ),
+                     style: const TextStyle(
+                       fontSize: 16,
+                       fontWeight: FontWeight.w500,
+                     ),
+                   ),
+                 ),
+                 
+                 // Liste des ahzab
+                 Expanded(
                   child: ListView.builder(
                     controller: _scrollController,
                     itemCount: ahzabFiltres.length,
-                    itemBuilder: (context, index) {
-                      final ahzabName = ahzabFiltres[index];
-                      final cardColor = _getCardColor(index);
-                      final ahzabId = index + 1; // Ahzab 1 à 60
+                                         itemBuilder: (context, index) {
+                       final entry = ahzabFiltres[index];
+                       final ahzabName = entry.value;
+                       final originalIndex = entry.key;
+                       final ahzabId = originalIndex + 1; // Vrai numéro du Hizb (1-60)
+                       final cardColor = _getCardColor(originalIndex);
                       
                       return GestureDetector(
                         onTap: () {

@@ -10,7 +10,7 @@ import 'ecran_dates_khatma.dart';
 import 'ecran_duaa.dart';
 import 'ecran_info_khatma.dart';
 import 'ecran_a_propos.dart';
-
+import 'dart:developer' as developer;
 /// Écran pour afficher les pages du Coran.
 /// Il utilise un PageView pour permettre de balayer les pages avec des contrôles de navigation.
 class EcranQuran extends StatefulWidget {
@@ -42,6 +42,7 @@ class _EcranQuranState extends State<EcranQuran> {
   void initState() {
     super.initState();
     _pages = DonneesStatiques.getImagesPourCoran(widget.idCoran);
+    developer.log('EcranQuran: Images chargées pour idCoran=${widget.idCoran}: $_pages', name: 'QURAN_DEBUG');
     _pageController = PageController();
     print('DEBUG: EcranQuran initState - Nombre de pages: ${_pages.length}');
     
@@ -129,6 +130,18 @@ class _EcranQuranState extends State<EcranQuran> {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
+            // Déterminer le message selon le hizb
+            String titleText = localizations?.hizbCompleted ?? 'Hizb terminé';
+            String messageText = localizations?.hizbCompletionMessage ?? 'Félicitations ! Vous avez terminé ce hizb.';
+            String continueText = localizations?.continueToNextHizb ?? 'Voulez-vous continuer vers le hizb suivant ?';
+            
+            // Si c'est le hizb 60, modifier les messages
+            if (widget.idCoran == 60) {
+              titleText = localizations?.hizb60Completed ?? 'Hizb 60 terminé';
+              messageText = localizations?.hizb60CompletionMessage ?? 'Félicitations ! Vous avez terminé le dernier hizb du Coran.';
+              continueText = localizations?.continueToDuaa ?? 'Voulez-vous continuer vers le Duaa de Khatm Al-Quran ?';
+            }
+            
             return AlertDialog(
               title: Row(
                 children: [
@@ -138,22 +151,25 @@ class _EcranQuranState extends State<EcranQuran> {
                     size: 28,
                   ),
                   const SizedBox(width: 8),
-                  Text(localizations?.hizbCompleted ?? 'Hizb terminé'),
+                  Expanded(
+                    child: Text(
+                      titleText,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ],
               ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    localizations?.hizbCompletionMessage ?? 
-                    'Félicitations ! Vous avez terminé ce hizb.',
+                    messageText,
                     style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    localizations?.continueToNextHizb ?? 
-                    'Voulez-vous continuer vers le hizb suivant ?',
+                    continueText,
                     style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
@@ -202,7 +218,26 @@ class _EcranQuranState extends State<EcranQuran> {
   }
 
   void _continueToNextHizb() {
+    print('DEBUG: _continueToNextHizb - idCoran: ${widget.idCoran}, nextHizbId: ${widget.nextHizbId}');
+    print('DEBUG: Type de idCoran: ${widget.idCoran.runtimeType}');
+    print('DEBUG: Comparaison idCoran == 60: ${widget.idCoran == 60}');
+    
+    // Vérifier si on est au hizb 60 (dernier hizb) - priorité absolue
+    if (widget.idCoran == 60) {
+      print('DEBUG: Hizb 60 détecté, navigation vers EcranDuaa');
+      // Si on termine le hizb 60, aller vers le duaa (khatma)
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const EcranDuaa(),
+        ),
+      );
+      return;
+    } else {
+      print('DEBUG: Pas hizb 60, idCoran = ${widget.idCoran}');
+    }
+    
     if (widget.nextHizbId != null) {
+      print('DEBUG: Navigation vers le hizb suivant dans le même jour');
       // Naviguer vers le hizb suivant dans le même jour
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -218,9 +253,11 @@ class _EcranQuranState extends State<EcranQuran> {
       // Si nextHizbId est null (lecture depuis la liste des Ahzab),
       // naviguer vers le hizb suivant dans la séquence
       final nextHizbId = widget.idCoran + 1;
+      print('DEBUG: nextHizbId calculé: $nextHizbId');
       
-      // Vérifier si le hizb suivant existe (1-60)
       if (nextHizbId <= 60) {
+        print('DEBUG: Navigation vers le hizb suivant: $nextHizbId');
+        // Vérifier si le hizb suivant existe (1-60)
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => EcranQuran(
@@ -230,6 +267,7 @@ class _EcranQuranState extends State<EcranQuran> {
           ),
         );
       } else {
+        print('DEBUG: Retour à la liste des Ahzab');
         // Si on est au hizb 60, retourner à la liste des Ahzab
         Navigator.of(context).pop();
       }
@@ -294,6 +332,10 @@ class _EcranQuranState extends State<EcranQuran> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
+    return _buildScaffold(context, localizations);
+  }
+
+  Widget _buildScaffold(BuildContext context, AppLocalizations? localizations) {
 
     return Scaffold(
       drawer: _buildDrawer(context),
@@ -616,150 +658,125 @@ class _EcranQuranState extends State<EcranQuran> {
                         ],
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Bouton retour à la liste des hizb
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () => Navigator.of(context).pop(),
-                              icon: const Icon(Icons.arrow_back),
-                              label: Text(localizations?.goBack ?? 'Retour'),
+                          // Bouton flèche gauche (circulaire) - garde les couleurs actuelles
+                          Container(
+                            width: 50,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: _currentPage > 0 ? _previousPage : null,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.orange,
+                                backgroundColor: _currentPage > 0 
+                                    ? Theme.of(context).primaryColor 
+                                    : Colors.grey,
                                 foregroundColor: Colors.white,
-                                elevation: 4,
-                                shadowColor: Colors.orange.withOpacity(0.3),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
+                                elevation: _currentPage > 0 ? 4 : 1,
+                                shadowColor: _currentPage > 0 
+                                    ? Theme.of(context).primaryColor.withOpacity(0.3)
+                                    : Colors.grey.withOpacity(0.3),
+                                shape: const CircleBorder(),
+                                padding: EdgeInsets.zero,
+                              ),
+                              child: const Icon(Icons.arrow_back, color: Colors.white),
+                            ),
+                          ),
+                          
+                          // Bouton "رجوع" (rectangulaire) - garde les couleurs actuelles
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            child: SizedBox(
+                                height: 40,
+                                child: ElevatedButton.icon(
+                                onPressed: () => Navigator.of(context).pop(),
+                                icon: const Icon(Icons.arrow_back),
+                                label: const Text('رجوع'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.orange,
+                                  foregroundColor: Colors.white,
+                                  elevation: 4,
+                                  shadowColor: Colors.orange.withOpacity(0.3),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          // Bouton précédent
+                          
+                          // Bouton "تكبير" (rectangulaire) - garde les couleurs actuelles
                           defaultTargetPlatform == TargetPlatform.android
-                            ? SizedBox(
-                                width: 50,
-                                child: ElevatedButton(
-                                  onPressed: _currentPage > 0 ? _previousPage : null,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: _currentPage > 0 
-                                        ? Theme.of(context).primaryColor 
-                                        : Colors.grey,
-                                    elevation: _currentPage > 0 ? 4 : 1,
-                                    shadowColor: _currentPage > 0 
-                                        ? Theme.of(context).primaryColor.withOpacity(0.3)
-                                        : Colors.grey.withOpacity(0.3),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
+                            ? Container(
+                                margin: const EdgeInsets.symmetric(horizontal: 8),
+                                child: SizedBox(
+                                  height: 40,
+                                  width: 35,
+                                  child: ElevatedButton(
+                                    onPressed: _toggleFullScreen,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: _isFullScreen 
+                                          ? Colors.orange 
+                                          : Theme.of(context).primaryColor,
+                                      foregroundColor: Colors.white,
+                                      elevation: 4,
+                                      shadowColor: (_isFullScreen 
+                                          ? Colors.orange 
+                                          : Theme.of(context).primaryColor).withOpacity(0.3),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                                     ),
-                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                                    child: Icon(
+                                      _isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                  child: const Icon(Icons.arrow_back, color: Colors.white),
                                 ),
                               )
-                            : Expanded(
-                                child: ElevatedButton.icon(
-                                  onPressed: _currentPage > 0 ? _previousPage : null,
-                                  icon: const Icon(Icons.arrow_back),
-                                  label: Text(localizations?.previous ?? 'Précédent'),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: _currentPage > 0 
-                                        ? Theme.of(context).primaryColor 
-                                        : Colors.grey,
-                                    elevation: _currentPage > 0 ? 4 : 1,
-                                    shadowColor: _currentPage > 0 
-                                        ? Theme.of(context).primaryColor.withOpacity(0.3)
-                                        : Colors.grey.withOpacity(0.3),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
+                              : Container(
+                                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                                    child: SizedBox(
+                                      width: 120,
+                                      height: 40,
+                                      child: ElevatedButton.icon(
+                                        onPressed: _toggleFullScreen,
+                                        icon: Icon(_isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen),
+                                        label: const Text('تكبير'),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: _isFullScreen 
+                                              ? Colors.orange 
+                                              : Theme.of(context).primaryColor,
+                                          foregroundColor: Colors.white,
+                                          elevation: 4,
+                                          shadowColor: (_isFullScreen 
+                                              ? Colors.orange 
+                                              : Theme.of(context).primaryColor).withOpacity(0.3),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                          
+                          // Bouton flèche droite (circulaire) - garde les couleurs actuelles
+                          Container(
+                            width: 50,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: _nextPage,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context).primaryColor,
+                                foregroundColor: Colors.white,
+                                elevation: 4,
+                                shadowColor: Theme.of(context).primaryColor.withOpacity(0.3),
+                                shape: const CircleBorder(),
+                                padding: EdgeInsets.zero,
                               ),
-                                                     const SizedBox(width: 8),
-                           // Bouton plein écran
-                           defaultTargetPlatform == TargetPlatform.android
-                             ? SizedBox(
-                                 width: 50,
-                                 child: ElevatedButton(
-                                   onPressed: _toggleFullScreen,
-                                   style: ElevatedButton.styleFrom(
-                                     backgroundColor: _isFullScreen 
-                                         ? Colors.orange 
-                                         : Theme.of(context).primaryColor,
-                                     foregroundColor: Colors.white,
-                                     elevation: 4,
-                                     shadowColor: (_isFullScreen 
-                                         ? Colors.orange 
-                                         : Theme.of(context).primaryColor).withOpacity(0.3),
-                                     shape: RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.circular(15),
-                                     ),
-                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                                   ),
-                                   child: Icon(
-                                     _isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               )
-                             : Expanded(
-                                 child: ElevatedButton.icon(
-                                   onPressed: _toggleFullScreen,
-                                   icon: Icon(_isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen),
-                                   label: Text(_isFullScreen ? 'Sortir' : 'Plein écran'),
-                                   style: ElevatedButton.styleFrom(
-                                     backgroundColor: _isFullScreen 
-                                         ? Colors.orange 
-                                         : Theme.of(context).primaryColor,
-                                     foregroundColor: Colors.white,
-                                     elevation: 4,
-                                     shadowColor: (_isFullScreen 
-                                         ? Colors.orange 
-                                         : Theme.of(context).primaryColor).withOpacity(0.3),
-                                     shape: RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.circular(15),
-                                     ),
-                                   ),
-                                 ),
-                               ),
-                           const SizedBox(width: 8),
-                           // Bouton suivant
-                           defaultTargetPlatform == TargetPlatform.android
-                             ? SizedBox(
-                                 width: 50,
-                                 child: ElevatedButton(
-                                   onPressed: _nextPage,
-                                   style: ElevatedButton.styleFrom(
-                                     backgroundColor: Theme.of(context).primaryColor,
-                                     foregroundColor: Colors.white,
-                                     elevation: 4,
-                                     shadowColor: Theme.of(context).primaryColor.withOpacity(0.3),
-                                     shape: RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.circular(15),
-                                     ),
-                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                                   ),
-                                   child: const Icon(Icons.arrow_forward, color: Colors.white),
-                                 ),
-                               )
-                             : Expanded(
-                                 child: ElevatedButton.icon(
-                                   onPressed: _nextPage,
-                                   icon: const Icon(Icons.arrow_forward),
-                                   label: Text(localizations?.next ?? 'Suivant'),
-                                   style: ElevatedButton.styleFrom(
-                                     backgroundColor: Theme.of(context).primaryColor,
-                                     foregroundColor: Colors.white,
-                                     elevation: 4,
-                                     shadowColor: Theme.of(context).primaryColor.withOpacity(0.3),
-                                     shape: RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.circular(15),
-                                     ),
-                                   ),
-                                 ),
-                               ),
+                              child: const Icon(Icons.arrow_forward, color: Colors.white),
+                            ),
+                          ),
                         ],
                       ),
                     ),

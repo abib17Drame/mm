@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:khatma_flutter/ecrans/ecran_a_propos.dart';
 import 'package:khatma_flutter/ecrans/ecran_dates_khatma.dart';
 import 'package:khatma_flutter/ecrans/ecran_duaa.dart';
@@ -14,6 +15,7 @@ import '../l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../auxiliaires/locale_provider.dart';
 import '../auxiliaires/theme_provider.dart';
+
 
 class EcranPrincipal extends StatefulWidget {
   const EcranPrincipal({Key? key}) : super(key: key);
@@ -96,7 +98,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
     final localizations = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(localizations?.dailyKhatma ?? 'Khatma Quotidienne'),
+        title: Text('حزب الإدارة'),
       ),
       drawer: _buildDrawer(context),
       body: _isLoading
@@ -106,14 +108,28 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
               : Column(
                   children: [
                     _buildEnteteDate(context),
+                    _buildBismillah(context),
                     Expanded(
-                      child: ListView(
-                        padding: const EdgeInsets.all(8.0),
-                        children: [
-                          _buildCarteLecture(context, _khatmaDuJour!.verser1, 1),
-                          _buildCarteLecture(context, _khatmaDuJour!.verser2, 2),
-                          _buildCarteLecture(context, _khatmaDuJour!.verser3, 3),
-                        ],
+                      child: GestureDetector(
+                        onHorizontalDragEnd: (DragEndDetails details) {
+                          if (details.primaryVelocity! > 0) {
+                            // Swipe vers la droite (jour suivant)
+                            _jourSuivant();
+                          } else if (details.primaryVelocity! < 0) {
+                            // Swipe vers la gauche (jour précédent)
+                            _jourPrecedent();
+                          }
+                        },
+                        child: ListView(
+                          padding: const EdgeInsets.all(8.0),
+                          children: [
+                            _buildCarteLecture(context, _khatmaDuJour!.verser1, 1),
+                            _buildCarteLecture(context, _khatmaDuJour!.verser2, 2),
+                            // Si c'est le dernier jour, insérer la carte du duaa entre hizb 60 et hizb 1
+                            if (_isDernierJour()) _buildCarteDuaa(context),
+                            _buildCarteLecture(context, _khatmaDuJour!.verser3, _isDernierJour() ? 4 : 3),
+                          ],
+                        ),
                       ),
                     ),
                     _buildBarreNavigation(context),
@@ -138,75 +154,183 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
     );
   }
 
+  /// Widget pour afficher la Bismillah de manière très stylée.
+  Widget _buildBismillah(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.green.shade300,
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.green.shade200.withOpacity(0.4),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Ligne décorative à gauche
+          Container(
+            width: 20,
+            height: 1.5,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.transparent,
+                  Colors.green.shade400,
+                  Colors.green.shade600,
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          // Texte principal Bismillah avec style calligraphique
+          Text(
+            'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              color: Colors.green.shade800,
+              height: 1.6,
+              letterSpacing: 0.5,
+              shadows: [
+                Shadow(
+                  color: Colors.green.shade600.withOpacity(0.2),
+                  offset: const Offset(0, 1),
+                  blurRadius: 2,
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(width: 12),
+          // Ligne décorative à droite
+          Container(
+            width: 20,
+            height: 1.5,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.green.shade600,
+                  Colors.green.shade400,
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// Widget pour une carte de lecture cliquable.
   Widget _buildCarteLecture(BuildContext context, String titre, int position) {
     final localizations = AppLocalizations.of(context);
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+    
+    // Couleurs vertes pour toutes les plateformes
+    final List<List<Color>> gradientColors = [
+      [Colors.green.shade400, Colors.green.shade600],
+      [Colors.green.shade500, Colors.green.shade700],
+      [Colors.green.shade600, Colors.green.shade800],
+    ];
+    
+    // Gérer le cas où position peut être 4 (hizb 1 après le duaa)
+    final int colorIndex = position <= 3 ? position - 1 : 2; // Utiliser la dernière couleur pour position 4
+    
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: gradientColors[colorIndex],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: gradientColors[colorIndex][0].withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
+            spreadRadius: 2,
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: () {
-          int idJour = LogiqueDate.rechercheIdJour(_session, _dateAffichee);
-          int idCoran = _calculerIdCoran(idJour, position);
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            int idJour = LogiqueDate.rechercheIdJour(_session, _dateAffichee);
+            int idCoran = _calculerIdCoran(idJour, position);
 
-          if(idCoran > 0) {
-            // Déterminer le hizb suivant et si c'est le dernier de la journée
-            int? nextHizbId = _getNextHizbId(idJour, position);
-            bool isLastHizbOfDay = _isLastHizbOfDay(idJour, position);
+            if(idCoran == 100) {
+              // Cas spécial pour la Sourate Al-Kahf (vendredi)
+              _navigateToKahf(context);
+            } else if(idCoran > 0) {
+              // Déterminer le hizb suivant et si c'est le dernier de la journée
+              int? nextHizbId = _getNextHizbId(idJour, position);
+              bool isLastHizbOfDay = _isLastHizbOfDay(idJour, position);
 
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) => EcranQuran(
-                  idCoran: idCoran,
-                  nextHizbId: nextHizbId,
-                  isLastHizbOfDay: isLastHizbOfDay,
-                  onDayCompleted: _markDayAsCompleted,
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) => EcranQuran(
+                    idCoran: idCoran,
+                    nextHizbId: nextHizbId,
+                    isLastHizbOfDay: isLastHizbOfDay,
+                    onDayCompleted: _markDayAsCompleted,
+                  ),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(1.0, 0.0),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    );
+                  },
+                  transitionDuration: const Duration(milliseconds: 300),
                 ),
-                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  return SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(1.0, 0.0),
-                      end: Offset.zero,
-                    ).animate(animation),
-                    child: child,
-                  );
-                },
-                transitionDuration: const Duration(milliseconds: 300),
-              ),
-            );
-          } else {
-            // Affiche un message si la logique de calcul de l'ID n'est pas implémentée pour ce cas
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(localizations?.unimplementedNavigation ?? "La navigation pour cette section n'est pas encore implémentée."),
-                backgroundColor: Theme.of(context).colorScheme.error,
-              ),
-            );
-          }
-        },
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Icon(
-                Icons.book,
-                size: 48,
-                color: Theme.of(context).primaryColor,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                _getHizbTitle(titre),
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
+              );
+            } else {
+              // Affiche un message si la logique de calcul de l'ID n'est pas implémentée pour ce cas
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(localizations?.unimplementedNavigation ?? "La navigation pour cette section n'est pas encore implémentée."),
+                  backgroundColor: Theme.of(context).colorScheme.error,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              
-            ],
+              );
+            }
+          },
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Text(
+                  _getHizbTitle(titre),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -262,13 +386,14 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton.icon(
             onPressed: _jourPrecedent,
             icon: const Icon(Icons.arrow_left),
             label: Text(localizations?.previous ?? 'Précédent'),
           ),
+          const SizedBox(width: 16.0),
           ElevatedButton.icon(
             onPressed: _jourSuivant,
             icon: const Icon(Icons.arrow_right),
@@ -279,7 +404,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
     );
   }
 
-  /// Calcule l'ID de la section du Coran à afficher, en se basant sur le jour du cycle et la position dans la liste.
+  /// Calcule l'ID de la section du Coran à afficher, en se basé sur le jour du cycle et la position dans la liste.
   /// Cette logique est une traduction directe de la méthode `visualisationQuran` de l'application Java originale.
   int _calculerIdCoran(int idJour, int positionDansListe) {
     switch (idJour) {
@@ -287,6 +412,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         if (positionDansListe == 1) return 59;
         if (positionDansListe == 2) return 60;
         if (positionDansListe == 3) return 1;
+        if (positionDansListe == 4) return 1; // Hizb 1 après le duaa
         break;
       case 2:
         if (positionDansListe == 1) return 2;
@@ -295,9 +421,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         break;
       case 3:
         // Le jour 3 (Vendredi) a une logique spéciale, le premier item est "Sourate Al-Kahf"
-        // qui n'est pas une section numérotée de la même manière. On pourrait lui assigner un ID spécial si nécessaire.
-        // Pour l'instant on ne retourne rien pour la sourate et on mappe les deux autres.
-        if (positionDansListe == 1) return 0; // Pas d'ID pour sourate Al-Kahf dans ce contexte
+        if (positionDansListe == 1) return 100; // ID spécial pour sourate Al-Kahf
         if (positionDansListe == 2) return 5;
         if (positionDansListe == 3) return 6;
         break;
@@ -333,7 +457,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         break;
       case 10:
          // Le jour 10 (Vendredi) a aussi la sourate Al-Kahf
-        if (positionDansListe == 1) return 0;
+        if (positionDansListe == 1) return 100; // ID spécial pour sourate Al-Kahf
         if (positionDansListe == 2) return 25;
         if (positionDansListe == 3) return 26;
         break;
@@ -369,7 +493,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         break;
       case 17:
         // Le jour 17 (Vendredi) a aussi la sourate Al-Kahf
-        if (positionDansListe == 1) return 0;
+        if (positionDansListe == 1) return 100; // ID spécial pour sourate Al-Kahf
         if (positionDansListe == 2) return 45;
         if (positionDansListe == 3) return 46;
         break;
@@ -527,4 +651,119 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
       ),
     );
   }
+
+  /// Vérifie si c'est le dernier jour (jour avec hizb 60)
+  bool _isDernierJour() {
+    if (_khatmaDuJour == null) return false;
+    
+    // Vérifier si le verser2 contient "الحزب 60" (hizb 60)
+    return _khatmaDuJour!.verser2.contains("الحزب 60");
+  }
+
+  /// Widget pour la carte du duaa (quatrième carte du dernier jour)
+  Widget _buildCarteDuaa(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
+    
+    // Couleur spéciale pour la carte du duaa (bleu plus vif)
+    final List<Color> gradientColors = [Colors.blue.shade400, Colors.blue.shade600];
+    
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: gradientColors,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: gradientColors[0].withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
+            spreadRadius: 2,
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            // Naviguer vers l'écran du duaa
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) => const EcranDuaa(),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(1.0, 0.0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+                transitionDuration: const Duration(milliseconds: 300),
+              ),
+            );
+          },
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Text(
+                  "دعاء ختم القرآن الكريم",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Navigate vers un écran spécial pour la Sourate Al-Kahf
+  void _navigateToKahf(BuildContext context) {
+    // Al-Kahf est toujours en position 1 les vendredis, donc il y a un hizb suivant (position 2)
+    int idJour = LogiqueDate.rechercheIdJour(_session, _dateAffichee);
+    int? nextHizbId = _calculerIdCoran(idJour, 2); // Position 2 après Al-Kahf
+    bool isLastHizbOfDay = false; // Al-Kahf n'est jamais le dernier hizb
+    
+    // Naviguer vers l'écran Quran avec l'ID 100 (Al-Kahf)
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => EcranQuran(
+          idCoran: 100, // ID spécial pour Al-Kahf (utilise quran61_x.jpg)
+          nextHizbId: nextHizbId > 0 ? nextHizbId : null, // Hizb suivant si valide
+          isLastHizbOfDay: isLastHizbOfDay,
+          onDayCompleted: _markDayAsCompleted,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
+      ),
+    );
+  }
+
+
 }

@@ -9,7 +9,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Khatma Flutter';
+  String get appTitle => 'حزب الإدارة';
 
   @override
   String get dailyKhatma => 'Khatma Quotidienne';
@@ -125,4 +125,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get no => 'Non';
+
+  @override
+  String get hizb60Completed => 'Hizb 60 terminé';
+
+  @override
+  String get hizb60CompletionMessage => 'Félicitations ! Vous avez terminé le dernier hizb du Coran.';
+
+  @override
+  String get continueToDuaa => 'Voulez-vous continuer vers le Duaa de Khatm Al-Quran ?';
+
+  @override
+  String get khatmaCompleted => 'Khatma terminée';
+
+  @override
+  String get khatmaCompletionMessage => 'Félicitations ! Vous avez terminé la Khatma complète.';
+
+  @override
+  String get continueToNewKhatma => 'Voulez-vous commencer une nouvelle Khatma ?';
 }

@@ -1,6 +1,6 @@
 {
     "@@locale": "fr",
-    "appTitle": "Khatma Flutter",
+    "appTitle": "حزب الإدارة",
     "dailyKhatma": "Khatma Quotidienne",
     "navigationMenu": "Menu de navigation",
     "hizbList": "Liste des Ahzab",
@@ -76,5 +76,11 @@
     "stayHere": "Rester ici",
     "dayMarkedCompleted": "Journée marquée comme terminée !",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "hizb60Completed": "Hizb 60 terminé",
+    "hizb60CompletionMessage": "Félicitations ! Vous avez terminé le dernier hizb du Coran.",
+    "continueToDuaa": "Voulez-vous continuer vers le Duaa de Khatm Al-Quran ?",
+    "khatmaCompleted": "Khatma terminée",
+    "khatmaCompletionMessage": "Félicitations ! Vous avez terminé la Khatma complète.",
+    "continueToNewKhatma": "Voulez-vous commencer une nouvelle Khatma ?"
 }

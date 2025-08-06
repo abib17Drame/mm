@@ -1,6 +1,6 @@
 {
     "@@locale": "ar",
-    "appTitle": "ختمة فلاتر",
+    "appTitle": "حزب الإدارة",
     "dailyKhatma": "الختمة اليومية",
     "navigationMenu": "قائمة التنقل",
     "hizbList": "قائمة الأحزاب",
@@ -76,5 +76,11 @@
     "stayHere": "البقاء هنا",
     "dayMarkedCompleted": "تم تحديد اليوم كمكتمل !",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "hizb60Completed": "الحزب 60 مكتمل",
+    "hizb60CompletionMessage": "تهانينا ! لقد أكملت آخر حزب في القرآن.",
+    "continueToDuaa": "هل تريد المتابعة إلى دعاء ختم القرآن؟",
+    "khatmaCompleted": "الختمة مكتملة",
+    "khatmaCompletionMessage": "تهانينا ! لقد أكملت الختمة كاملة.",
+    "continueToNewKhatma": "هل تريد بدء ختمة جديدة؟"
 }

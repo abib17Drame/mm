@@ -100,7 +100,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Khatma Flutter'**
+  /// **'حزب الإدارة'**
   String get appTitle;
 
   /// No description provided for @dailyKhatma.
@@ -312,6 +312,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No'**
   String get no;
+
+  /// No description provided for @hizb60Completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Hizb 60 Completed'**
+  String get hizb60Completed;
+
+  /// No description provided for @hizb60CompletionMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You have completed the last hizb of the Quran.'**
+  String get hizb60CompletionMessage;
+
+  /// No description provided for @continueToDuaa.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you like to continue to the Duaa of Khatm Al-Quran?'**
+  String get continueToDuaa;
+
+  /// No description provided for @khatmaCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Completed'**
+  String get khatmaCompleted;
+
+  /// No description provided for @khatmaCompletionMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You have completed the full Khatma.'**
+  String get khatmaCompletionMessage;
+
+  /// No description provided for @continueToNewKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you like to start a new Khatma?'**
+  String get continueToNewKhatma;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
