@@ -17,6 +17,7 @@ import '../auxiliaires/locale_provider.dart';
 import '../auxiliaires/theme_provider.dart';
 
 
+
 class EcranPrincipal extends StatefulWidget {
   const EcranPrincipal({Key? key}) : super(key: key);
 
@@ -39,31 +40,52 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
       _dbHelper = AideurBaseDeDonnees.instance;
       _initialiser();
     });
+    
+    // Précharge les données pour améliorer les performances
+    _prechargerDonnees();
   }
+  
+  /// Précharge les données pour améliorer les performances
+  void _prechargerDonnees() {
+    // Précharge les données de base de manière asynchrone
+    Future.microtask(() async {
+      await _dbHelper.database;
+    });
+  }
+
+
 
   /// Prépare la base de données et charge les données pour la date initiale.
   Future<void> _initialiser() async {
-    // S'assure que la base de données est prête.
-    await _dbHelper.database;
+    try {
+      // S'assure que la base de données est prête.
+      await _dbHelper.database;
 
-    // Récupère la dernière session de la base de données.
-    DateTime? sessionBd = await _dbHelper.getDernierSession();
+      // Récupère la dernière session de la base de données.
+      DateTime? sessionBd = await _dbHelper.getDernierSession();
 
-    if (sessionBd != null) {
-      _session = LogiqueDate.majSession(sessionBd);
-      // Si la session a été mise à jour, on la sauvegarde en BD.
-      if (_session.millisecondsSinceEpoch != sessionBd.millisecondsSinceEpoch) {
+      if (sessionBd != null) {
+        _session = LogiqueDate.majSession(sessionBd);
+        // Si la session a été mise à jour, on la sauvegarde en BD.
+        if (_session.millisecondsSinceEpoch != sessionBd.millisecondsSinceEpoch) {
+          await _dbHelper.updateSession(_session);
+        }
+      } else {
+        // Si aucune session n'est en BD (premier lancement), on initialise la première.
+        _session = LogiqueDate.majSession(_session);
+        // La date de la première ligne est mise à jour pour marquer le début de la session.
         await _dbHelper.updateSession(_session);
       }
-    } else {
-      // Si aucune session n'est en BD (premier lancement), on initialise la première.
-      _session = LogiqueDate.majSession(_session);
-      // La date de la première ligne est mise à jour pour marquer le début de la session.
-      await _dbHelper.updateSession(_session);
-    }
 
-    // Charge les données pour la date actuelle.
-    _chargerDonneesPourDate(_dateAffichee);
+      // Charge les données pour la date actuelle.
+      _chargerDonneesPourDate(_dateAffichee);
+    } catch (e) {
+      // Gestion d'erreur pour éviter les blocages
+      print('Erreur lors de l\'initialisation: $e');
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   /// Charge les données de la Khatma pour une date donnée.
@@ -71,11 +93,17 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
     setState(() {
       _isLoading = true;
     });
-    int idJour = LogiqueDate.rechercheIdJour(_session, date);
-    _khatmaDuJour = await _dbHelper.getLigneById(idJour);
-    setState(() {
-      _isLoading = false;
-    });
+    
+    try {
+      int idJour = LogiqueDate.rechercheIdJour(_session, date);
+      _khatmaDuJour = await _dbHelper.getLigneById(idJour);
+    } catch (e) {
+      print('Erreur lors du chargement des données: $e');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   // Fonctions de navigation entre les jours.
@@ -367,12 +395,11 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
   /// Marque la journée comme terminée
   void _markDayAsCompleted() {
     // Ici vous pouvez ajouter la logique pour marquer la journée comme terminée
-    // Par exemple, sauvegarder dans la base de données, afficher une notification, etc.
     
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(AppLocalizations.of(context)?.dayMarkedCompleted ?? 
-                     'Journée marquée comme terminée !'),
+        'Journée marquée comme terminée !'),
         backgroundColor: Colors.green,
         duration: const Duration(seconds: 3),
       ),
@@ -392,6 +419,30 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
             onPressed: _jourPrecedent,
             icon: const Icon(Icons.arrow_left),
             label: Text(localizations?.previous ?? 'Précédent'),
+          ),
+          const SizedBox(width: 16.0),
+          // Bouton de thème
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) {
+              return ElevatedButton(
+                onPressed: () {
+                  themeProvider.toggleTheme();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: Colors.white,
+                  elevation: 4,
+                  shadowColor: Theme.of(context).primaryColor.withOpacity(0.3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Icon(
+                  themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                  color: Colors.white,
+                ),
+              );
+            },
           ),
           const SizedBox(width: 16.0),
           ElevatedButton.icon(
@@ -456,7 +507,7 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         if (positionDansListe == 3) return 24;
         break;
       case 10:
-         // Le jour 10 (Vendredi) a aussi la sourate Al-Kahf
+         // la sourate Al-Kahf
         if (positionDansListe == 1) return 100; // ID spécial pour sourate Al-Kahf
         if (positionDansListe == 2) return 25;
         if (positionDansListe == 3) return 26;
@@ -531,12 +582,18 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(localizations?.language ?? 'Langue'),
+          title: Text(
+            localizations?.language ?? 'Langue',
+            style: Theme.of(context).dialogTheme.titleTextStyle,
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: const Text('Français'),
+                title: Text(
+                  'Français',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
                 leading: Radio<String>(
                   value: 'fr',
                   groupValue: context.read<LocaleProvider>().locale.languageCode,
@@ -547,7 +604,10 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
                 ),
               ),
               ListTile(
-                title: const Text('العربية'),
+                title: Text(
+                  'العربية',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
                 leading: Radio<String>(
                   value: 'ar',
                   groupValue: context.read<LocaleProvider>().locale.languageCode,
@@ -628,17 +688,14 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
                  ? Icons.light_mode 
                  : Icons.dark_mode,
              ),
-             title: Text('Thème'),
-             subtitle: Text(
-               context.watch<ThemeProvider>().isDarkMode 
-                 ? 'Mode sombre' 
-                 : 'Mode clair',
-             ),
+             title: Text(_getThemeText(context, true)),
+             subtitle: Text(_getThemeText(context, false)),
              onTap: () {
                context.read<ThemeProvider>().toggleTheme();
                Navigator.pop(context);
             },
           ),
+
           ListTile(
             leading: const Icon(Icons.person_outline),
             title: Text(localizations?.aboutUs ?? 'À propos de nous'),
@@ -763,6 +820,28 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
         transitionDuration: const Duration(milliseconds: 300),
       ),
     );
+  }
+
+  /// Retourne le texte du thème adapté selon la langue
+  String _getThemeText(BuildContext context, bool isTitle) {
+    final locale = Localizations.localeOf(context).languageCode;
+    
+    if (locale == 'ar') {
+      return isTitle ? 'المظهر' : (context.watch<ThemeProvider>().isDarkMode ? 'الوضع المظلم' : 'الوضع الفاتح');
+    } else {
+      return isTitle ? 'Thème' : (context.watch<ThemeProvider>().isDarkMode ? 'Mode sombre' : 'Mode clair');
+    }
+  }
+
+  /// Retourne le tooltip du bouton thème adapté selon la langue
+  String _getThemeTooltip(BuildContext context) {
+    final locale = Localizations.localeOf(context).languageCode;
+    
+    if (locale == 'ar') {
+      return 'تغيير الثيم';
+    } else {
+      return 'Changer le thème';
+    }
   }
 
 

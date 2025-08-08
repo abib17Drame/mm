@@ -13,16 +13,17 @@ class EcranInfoKhatma extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        // title: Text(localizations?.aboutKhatma ?? 'À propos de la Khatma'),
         title: Text(localizations?.aboutKhatma ?? 'À propos de la Khatma'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          info,
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.right,
-        ),
-      ),
+      // body: SingleChildScrollView(
+      //   padding: const EdgeInsets.all(16.0),
+      //   child: Text(
+      //     info,
+      //     style: Theme.of(context).textTheme.bodyLarge,
+      //     textAlign: TextAlign.right,
+      //   ),
+      // ),
     );
   }
 }

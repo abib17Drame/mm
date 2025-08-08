@@ -35,6 +35,25 @@ class AppTheme {
       color: couleurBlanche,
     ),
 
+    // Thème pour les dialogues (AlertDialog).
+    dialogTheme: DialogThemeData(
+      backgroundColor: couleurBlanche,
+      surfaceTintColor: couleurBlanche,
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      titleTextStyle: const TextStyle(
+        color: couleurTexte,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      contentTextStyle: const TextStyle(
+        color: couleurTexte,
+        fontSize: 16,
+      ),
+    ),
+
     // Thème pour les boutons élevés (ElevatedButton).
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -86,6 +105,25 @@ class AppTheme {
       color: const Color(0xFF1E1E1E),
     ),
 
+    // Thème pour les dialogues (AlertDialog).
+    dialogTheme: DialogThemeData(
+      backgroundColor: const Color(0xFF2D2D2D),
+      surfaceTintColor: const Color(0xFF2D2D2D),
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      titleTextStyle: const TextStyle(
+        color: couleurTexteSombre,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      contentTextStyle: const TextStyle(
+        color: couleurTexteSombre,
+        fontSize: 16,
+      ),
+    ),
+
     // Thème pour les boutons élevés (ElevatedButton).
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -112,6 +150,8 @@ class AppTheme {
       brightness: Brightness.dark,
       surface: const Color(0xFF1E1E1E),
       background: couleurFondSombre,
+      onSurface: couleurTexteSombre,
+      onBackground: couleurTexteSombre,
     ),
   );
 

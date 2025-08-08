@@ -239,7 +239,7 @@ class _EcranListeAhzabState extends State<EcranListeAhzab> {
                   child: ListView.builder(
                     controller: _scrollController,
                     itemCount: ahzabFiltres.length,
-                                         itemBuilder: (context, index) {
+                      itemBuilder: (context, index) {
                        final entry = ahzabFiltres[index];
                        final ahzabName = entry.value;
                        final originalIndex = entry.key;

@@ -115,6 +115,8 @@ class _EcranQuranState extends State<EcranQuran> {
   void _toggleFullScreen() {
     setState(() {
       _isFullScreen = !_isFullScreen;
+      // Recréer le PageController avec la page actuelle pour conserver la position
+      _pageController = PageController(initialPage: _currentPage);
     });
   }
 
@@ -338,7 +340,7 @@ class _EcranQuranState extends State<EcranQuran> {
   Widget _buildScaffold(BuildContext context, AppLocalizations? localizations) {
 
     return Scaffold(
-      drawer: _buildDrawer(context),
+        drawer: _buildDrawer(context),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: Builder(
@@ -348,15 +350,94 @@ class _EcranQuranState extends State<EcranQuran> {
             tooltip: localizations?.navigationMenu ?? 'Menu de navigation',
           ),
         ),
-        title: Text(
-          localizations?.quranReadingTitle(widget.idCoran) ?? 'Lecture du Coran (Section ${widget.idCoran})',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+
         actions: [],
       ),
       body: _isFullScreen
         ? Stack(
             children: [
+              // Indicateur de page en mode plein écran
+              Positioned(
+                top: 16,
+                right: 16,
+                child: defaultTargetPlatform == TargetPlatform.android
+                  ? GestureDetector(
+                      onTap: _showPageDialog,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Theme.of(context).primaryColor.withOpacity(0.9),
+                              Theme.of(context).primaryColor.withOpacity(0.8),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor.withOpacity(0.3),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.pageview,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              '${_currentPage + 1} / ${_pages.length}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : GestureDetector(
+                      onTap: _showPageDialog,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Theme.of(context).primaryColor.withOpacity(0.9),
+                              Theme.of(context).primaryColor.withOpacity(0.8),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor.withOpacity(0.3),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.pageview,
+                              size: 18,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              '${_currentPage + 1} / ${_pages.length}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+              ),
               NotificationListener<ScrollNotification>(
                 onNotification: (ScrollNotification notification) {
                   print('DEBUG: Scroll notification reçue: ${notification.runtimeType}');
@@ -704,7 +785,36 @@ class _EcranQuranState extends State<EcranQuran> {
                             ),
                           ),
                           
-                          // Bouton "تكبير" (rectangulaire) - garde les couleurs actuelles
+                          // Bouton de thème
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            child: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  context.read<ThemeProvider>().toggleTheme();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Theme.of(context).primaryColor,
+                                  foregroundColor: Colors.white,
+                                  elevation: 4,
+                                  shadowColor: Theme.of(context).primaryColor.withOpacity(0.3),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                                ),
+                                child: Icon(
+                                  context.watch<ThemeProvider>().isDarkMode 
+                                    ? Icons.light_mode 
+                                    : Icons.dark_mode,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          
                           defaultTargetPlatform == TargetPlatform.android
                             ? Container(
                                 margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -828,6 +938,17 @@ class _EcranQuranState extends State<EcranQuran> {
     );
   }
 
+  /// Retourne le texte du thème adapté selon la langue
+  String _getThemeText(BuildContext context, bool isTitle) {
+    final locale = Localizations.localeOf(context).languageCode;
+    
+    if (locale == 'ar') {
+      return isTitle ? 'المظهر' : (context.watch<ThemeProvider>().isDarkMode ? 'الوضع المظلم' : 'الوضع الفاتح');
+    } else {
+      return isTitle ? 'Thème' : (context.watch<ThemeProvider>().isDarkMode ? 'Mode sombre' : 'Mode clair');
+    }
+  }
+
   /// Construit le menu de navigation latéral (Drawer).
   Widget _buildDrawer(BuildContext context) {
     final localizations = AppLocalizations.of(context);
@@ -892,12 +1013,8 @@ class _EcranQuranState extends State<EcranQuran> {
                 ? Icons.light_mode 
                 : Icons.dark_mode,
             ),
-            title: Text('Thème'),
-            subtitle: Text(
-              context.watch<ThemeProvider>().isDarkMode 
-                ? 'Mode sombre' 
-                : 'Mode clair',
-            ),
+            title: Text(_getThemeText(context, true)),
+            subtitle: Text(_getThemeText(context, false)),
             onTap: () {
               context.read<ThemeProvider>().toggleTheme();
               Navigator.pop(context);
