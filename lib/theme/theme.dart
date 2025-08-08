@@ -54,6 +54,20 @@ class AppTheme {
       ),
     ),
 
+    // Thème pour le menu latéral (Drawer).
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: couleurBlanche,
+    ),
+
+    // Thème pour les icônes.
+    iconTheme: const IconThemeData(color: couleurTexte),
+
+    // Thème pour les tuiles de liste (ListTile).
+    listTileTheme: const ListTileThemeData(
+      iconColor: couleurTexte,
+      subtitleTextStyle: TextStyle(color: Colors.black54),
+    ),
+
     // Thème pour les boutons élevés (ElevatedButton).
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -124,6 +138,20 @@ class AppTheme {
       ),
     ),
 
+    // Thème pour le menu latéral (Drawer).
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: couleurFondSombre,
+    ),
+
+    // Thème pour les icônes.
+    iconTheme: const IconThemeData(color: couleurTexteSombre),
+
+    // Thème pour les tuiles de liste (ListTile).
+    listTileTheme: const ListTileThemeData(
+      iconColor: couleurTexteSombre,
+      subtitleTextStyle: TextStyle(color: Colors.white70),
+    ),
+
     // Thème pour les boutons élevés (ElevatedButton).
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -139,9 +167,20 @@ class AppTheme {
 
     // Thème du texte.
     textTheme: const TextTheme(
-      headlineSmall: TextStyle(color: couleurTexteSombre, fontWeight: FontWeight.bold),
+
       bodyLarge: TextStyle(color: couleurTexteSombre, fontSize: 16, height: 1.5),
       bodyMedium: TextStyle(color: Colors.white70),
+      titleLarge: TextStyle(color: couleurTexteSombre),
+      titleMedium: TextStyle(color: couleurTexteSombre),
+      titleSmall: TextStyle(color: couleurTexteSombre),
+      displayLarge: TextStyle(color: couleurTexteSombre),
+      displayMedium: TextStyle(color: couleurTexteSombre),
+      displaySmall: TextStyle(color: couleurTexteSombre),
+      headlineMedium: TextStyle(color: couleurTexteSombre),
+      headlineSmall: TextStyle(color: couleurTexteSombre, fontWeight: FontWeight.bold),
+      labelLarge: TextStyle(color: couleurTexteSombre),
+      labelMedium: TextStyle(color: couleurTexteSombre),
+      labelSmall: TextStyle(color: couleurTexteSombre),
     ),
 
     // Schéma de couleurs général.

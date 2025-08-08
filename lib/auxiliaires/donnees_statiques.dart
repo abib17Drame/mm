@@ -94,7 +94,361 @@ class DonneesStatiques {
 
   /// Retourne les informations sur la Khatma.
   static String getInfoKhatma() {
-    return "\n* يمكنكم هذا التطبيق من :\n\n-\tقراءة أحزاب القرآن الكريم برواية ورش عن نافع (كل حزب مقسم إلى أثمان، وكل ثمن في صفحة) وهو ما يساعد على الحفظ، من خلال التطبيق يمكن الضغط على أي حزب لقراءته (المصحف المعتمد في التطبيق بعد سورة الفاتحة هو \"مصحف الشاذلي المثمن\" المشهور في الجزائر).\n\n-\tمعرفة الأحزاب التي تقرأ كل يوم حسب تاريخه، طبقا لبرنامج \"ختمة الإدارة\"، وهو ما يعين على مرافقة المواظبين على هذه الختمة وختم القرآن معهم كل ثلاثة أسابيع (من خلال الضغط على تواريخ الختمات القادمة في التطبيق، يمكن معرفة تواريخ ليالي الختمة).\n\n-\tمعرفة الأحزاب التي فيها مواضع سجود التلاوة ومعرفة أرقام الآيات للانتباه لها عند القراءة.\n\n-\tقراءة دعاء ختم القرآن الكريم.\n\n* ختمة الإدارة\n\n\" -الإدارة\"، من الدوران، لأنه يختم كل ثلاثة أسابيع  (من ليلة الخميس إلى ليلة الخميس) ... ، وهي من عمل أهل شنقيط وتتوارثها الأجيال في بعض المناطق الموريتانية ، حيث يواظب عليها في المساجد وفي البيوت.\n\n- تبدأ هذه الختمة ليلة الخميس ويختم القرآن ليلة الخميس الرابعة بعد البداية.\n\n- ثلاثة أحزاب في اليوم، حزب في الصباح وحزبين في المساء، إلا يوم الجمعة تقرأ سورة الكهف بدل الحزب الصباحي.\n";
+    return """
+* يمكنكم هذا التطبيق من :
+
+📖 قراءة أحزاب القرآن الكريم برواية ورش عن نافع (كل حزب مقسم إلى أثمان، وكل ثمن في صفحة) وهو ما يساعد على الحفظ، من خلال التطبيق يمكن الضغط على أي حزب لقراءته (المصحف المعتمد في التطبيق بعد سورة الفاتحة هو "مصحف الشاذلي المثمن" المشهور في الجزائر).
+
+📅 معرفة الأحزاب التي تقرأ كل يوم حسب تاريخه، طبقا لبرنامج "ختمة الإدارة"، وهو ما يعين على مرافقة المواظبين على هذه الختمة وختم القرآن معهم كل ثلاثة أسابيع (من خلال الضغط على تواريخ الختمات القادمة في التطبيق، يمكن معرفة تواريخ ليالي الختمة).
+
+🕌 معرفة الأحزاب التي فيها مواضع سجود التلاوة ومعرفة أرقام الآيات للانتباه لها عند القراءة.
+
+📿 قراءة دعاء ختم القرآن الكريم مع إمكانية التكبير والتصغير والمشاركة.
+
+🌙 تغيير المظهر بين الوضع الفاتح والوضع المظلم حسب تفضيلات المستخدم.
+
+🌍 تغيير اللغة بين العربية والفرنسية والإنجليزية.
+
+📱 استخدام التطبيق على الهواتف الذكية والأجهزة اللوحية وأجهزة الكمبيوتر.
+
+🔄 التنقل بين الأيام بسهولة مع عرض التاريخ الحالي ويوم الختمة.
+
+📊 عرض قائمة كاملة للأحزاب الستين مع تفاصيل كل حزب.
+
+🎯 تحديد مواضع السجود في كل حزب للانتباه عند القراءة.
+
+📤 مشاركة صفحات القرآن والدعاء مع الآخرين.
+
+💾 حفظ البيانات محلياً مع إمكانية العمل بدون إنترنت.
+
+* ختمة الإدارة
+
+"ختمة الإدارة"، من الدوران، لأنه يختم كل ثلاثة أسابيع (من ليلة الخميس إلى ليلة الخميس) ... ، وهي من عمل أهل شنقيط وتتوارثها الأجيال في بعض المناطق الموريتانية ، حيث يواظب عليها في المساجد وفي البيوت.
+
+- تبدأ هذه الختمة ليلة الخميس ويختم القرآن ليلة الخميس الرابعة بعد البداية.
+
+- ثلاثة أحزاب في اليوم، حزب في الصباح وحزبين في المساء، إلا يوم الجمعة تقرأ سورة الكهف بدل الحزب الصباحي.
+
+* المميزات التقنية :
+
+⚡ تطبيق سريع ومستجيب مع واجهة مستخدم حديثة
+🎨 تصميم جميل مع ألوان هادئة ومناسبة للقراءة
+📱 متوافق مع جميع الأجهزة (Android, iOS, Windows, macOS, Linux)
+🔧 تحديثات مستمرة وتحسينات للأداء
+💡 واجهة سهلة الاستخدام مع تنقل بديهي
+""";
+  }
+
+  /// Retourne les informations sur la Khatma en français.
+  static String getInfoKhatmaFrancais() {
+    return """
+* Ce que vous permet cette application :
+
+📖 Lire les hizb du Coran selon la récitation Warsh de Nafi' (chaque hizb divisé en huitièmes, chaque huitième sur une page) ce qui aide à la mémorisation. Vous pouvez cliquer sur n'importe quel hizb pour le lire (le mushaf utilisé dans l'application après la sourate Al-Fatiha est le "Mushaf Chadhli Muthamman" célèbre en Algérie).
+
+📅 Connaître les hizb à lire chaque jour selon la date, selon le programme "Khatma de l'Administration", ce qui aide à accompagner ceux qui suivent régulièrement cette khatma et terminer le Coran avec eux toutes les trois semaines (en cliquant sur les dates des prochaines khatmas dans l'application, vous pouvez connaître les dates des nuits de khatma).
+
+🕌 Connaître les hizb qui contiennent des positions de prosternation de récitation et connaître les numéros des versets pour y prêter attention lors de la lecture.
+
+📿 Lire le dua'a de Khatm Al-Quran avec possibilité de zoom, réduction et partage.
+
+🌙 Changer l'apparence entre le mode clair et le mode sombre selon les préférences de l'utilisateur.
+
+🌍 Changer la langue entre l'arabe, le français et l'anglais.
+
+📱 Utiliser l'application sur smartphones, tablettes et ordinateurs.
+
+🔄 Naviguer facilement entre les jours avec affichage de la date actuelle et du jour de khatma.
+
+📊 Afficher une liste complète des soixante hizb avec détails de chaque hizb.
+
+🎯 Identifier les positions de prosternation dans chaque hizb pour y prêter attention lors de la lecture.
+
+📤 Partager les pages du Coran et du dua'a avec d'autres.
+
+💾 Sauvegarder les données localement avec possibilité de travailler hors ligne.
+
+* Khatma de l'Administration
+
+"Khatma de l'Administration", de la rotation, car elle termine tous les trois semaines (du jeudi soir au jeudi soir)... Elle est l'œuvre des gens de Chinguetti et se transmet de génération en génération dans certaines régions mauritaniennes, où elle est pratiquée régulièrement dans les mosquées et les maisons.
+
+- Cette khatma commence le jeudi soir et termine le Coran le quatrième jeudi soir après le début.
+
+- Trois hizb par jour, un hizb le matin et deux hizb le soir, sauf le vendredi où on lit la sourate Al-Kahf au lieu du hizb du matin.
+
+* Caractéristiques techniques :
+
+⚡ Application rapide et réactive avec interface utilisateur moderne
+🎨 Design beau avec des couleurs douces et appropriées pour la lecture
+📱 Compatible avec tous les appareils (Android, iOS, Windows, macOS, Linux)
+🔧 Mises à jour continues et améliorations de performance
+💡 Interface facile à utiliser avec navigation intuitive
+""";
+  }
+
+  /// Retourne les informations sur la Khatma en anglais.
+  static String getInfoKhatmaAnglais() {
+    return """
+* What this application allows you to do :
+
+📖 Read the hizb of the Quran according to Warsh recitation from Nafi' (each hizb divided into eighths, each eighth on a page) which helps with memorization. You can click on any hizb to read it (the mushaf used in the application after Surah Al-Fatiha is the famous "Mushaf Chadhli Muthamman" in Algeria).
+
+📅 Know the hizb to read each day according to the date, according to the "Administration Khatma" program, which helps to accompany those who regularly follow this khatma and complete the Quran with them every three weeks (by clicking on the dates of upcoming khatmas in the application, you can know the dates of khatma nights).
+
+🕌 Know the hizb that contain recitation prostration positions and know the verse numbers to pay attention to during reading.
+
+📿 Read the dua'a of Khatm Al-Quran with zoom, reduction and sharing capabilities.
+
+🌙 Change appearance between light and dark mode according to user preferences.
+
+🌍 Change language between Arabic, French and English.
+
+📱 Use the application on smartphones, tablets and computers.
+
+🔄 Navigate easily between days with display of current date and khatma day.
+
+📊 Display a complete list of the sixty hizb with details of each hizb.
+
+🎯 Identify prostration positions in each hizb to pay attention to during reading.
+
+📤 Share Quran pages and dua'a with others.
+
+💾 Save data locally with ability to work offline.
+
+* Administration Khatma
+
+"Administration Khatma", from rotation, because it completes every three weeks (from Thursday evening to Thursday evening)... It is the work of the people of Chinguetti and is passed down from generation to generation in some Mauritanian regions, where it is regularly practiced in mosques and homes.
+
+- This khatma begins on Thursday evening and completes the Quran on the fourth Thursday evening after the beginning.
+
+- Three hizb per day, one hizb in the morning and two hizb in the evening, except Friday where Surah Al-Kahf is read instead of the morning hizb.
+
+* Technical features :
+
+⚡ Fast and responsive application with modern user interface
+🎨 Beautiful design with soft colors appropriate for reading
+📱 Compatible with all devices (Android, iOS, Windows, macOS, Linux)
+🔧 Continuous updates and performance improvements
+💡 Easy-to-use interface with intuitive navigation
+""";
+  }
+
+  /// Retourne les informations sur la Khatma selon la langue.
+  static String getInfoKhatmaByLanguage(String languageCode) {
+    switch (languageCode) {
+      case 'fr':
+        return getInfoKhatmaFrancais();
+      case 'en':
+        return getInfoKhatmaAnglais();
+      case 'ar':
+      default:
+        return getInfoKhatma();
+    }
+  }
+
+  /// Retourne les informations sur l'application en français.
+  static String getInfoApplicationFrancais() {
+    return """
+📱 **Khatma Flutter**
+
+Une application moderne développée pour faciliter la lecture quotidienne du Coran selon le programme traditionnel "ختمة الإدارة" (Khatma de l'Administration).
+
+🎯 **Fonctionnalités principales :**
+
+📖 **Lecture du Coran**
+• Affichage des pages avec zoom et navigation fluide
+• Navigation temporelle entre les jours passés et futurs
+• Calcul automatique des hizb à lire chaque jour
+
+📋 **Gestion complète**
+• Liste complète des 60 hizb avec leurs détails
+• Suivi quotidien automatique
+• Calcul et affichage des prochaines dates de Khatma
+
+📿 **Dua'a de fin**
+• Inclusion du dua'a complet de Khatm Al-Quran
+• Export PDF du dua'a
+
+🌍 **Support multilingue**
+• Français, arabe et anglais
+• Changement dynamique de langue
+• Interface adaptée à chaque culture
+
+🎨 **Personnalisation**
+• Mode clair et mode sombre
+• Thèmes adaptatifs
+• Interface moderne et intuitive
+
+📱 **Compatibilité**
+• Android (téléphones et tablettes)
+• iOS (iPhone et iPad)
+• Windows, macOS, Linux (ordinateurs)
+
+💾 **Fonctionnalités techniques**
+• Base de données locale SQLite
+• Mode hors ligne complet
+• Partage d'images et de documents
+• Sauvegarde automatique des préférences
+
+⚡ **Performance**
+• Chargement rapide des images
+• Navigation fluide
+• Optimisation mémoire
+• Interface réactive
+
+🔧 **Développement**
+• Framework Flutter moderne
+• Architecture modulaire
+• Code maintenable et extensible
+• Tests et documentation
+
+📞 **Support**
+• Interface intuitive
+• Gestion d'erreurs gracieuse
+• Messages d'aide contextuels
+• Mises à jour régulières
+""";
+  }
+
+  /// Retourne les informations sur l'application en anglais.
+  static String getInfoApplicationAnglais() {
+    return """
+📱 **Khatma Flutter**
+
+A modern application developed to facilitate daily Quran reading according to the traditional "ختمة الإدارة" (Administration Khatma) program.
+
+🎯 **Main features :**
+
+📖 **Quran Reading**
+• Display pages with zoom and smooth navigation
+• Temporal navigation between past and future days
+• Automatically calculate hizb to read each day
+
+📋 **Complete management**
+• Complete list of all 60 hizb with their details
+• Automatic daily tracking
+• Calculate and display upcoming Khatma dates
+
+📿 **Completion dua'a**
+• Include the complete Khatm Al-Quran dua'a
+• PDF export of dua'a
+
+🌍 **Multilingual support**
+• French, Arabic and English
+• Dynamic language switching
+• Interface adapted to each culture
+
+🎨 **Personalization**
+• Light and dark mode
+• Adaptive themes
+• Modern and intuitive interface
+
+📱 **Compatibility**
+• Android (phones and tablets)
+• iOS (iPhone and iPad)
+• Windows, macOS, Linux (computers)
+
+💾 **Technical features**
+• Local SQLite database
+• Complete offline mode
+• Image and document sharing
+• Automatic preference backup
+
+⚡ **Performance**
+• Fast image loading
+• Smooth navigation
+• Memory optimization
+• Responsive interface
+
+🔧 **Development**
+• Modern Flutter framework
+• Modular architecture
+• Maintainable and extensible code
+• Tests and documentation
+
+📞 **Support**
+• Intuitive interface
+• Graceful error handling
+• Contextual help messages
+• Regular updates
+""";
+  }
+
+  /// Retourne les informations sur l'application en arabe.
+  static String getInfoApplicationArabe() {
+    return """
+📱 **ختمة فلاتر**
+
+تطبيق حديث تم تطويره لتسهيل القراءة اليومية للقرآن الكريم حسب البرنامج التقليدي "ختمة الإدارة".
+
+🎯 **الميزات الرئيسية :**
+
+📖 **قراءة القرآن**
+• عرض صفحات القرآن مع التكبير والتنقل السلس
+• التنقل الزمني بين الأيام الماضية والمستقبلية
+• حساب الأحزاب التي يجب قراءتها كل يوم تلقائياً
+
+📋 **الإدارة الشاملة**
+• عرض جميع الأحزاب الستين مع تفاصيلها
+• المتابعة اليومية التلقائية
+• حساب وعرض التواريخ القادمة للختمات
+
+📿 **دعاء الختم**
+• تضمين دعاء ختم القرآن الكريم الكامل
+• تصدير PDF للدعاء
+
+🌍 **الدعم متعدد اللغات**
+• الفرنسية والعربية والإنجليزية
+• تغيير اللغة ديناميكياً
+• واجهة متكيفة مع كل ثقافة
+
+🎨 **التخصيص**
+• الوضع الفاتح والوضع المظلم
+• السمات المتكيفة
+• واجهة حديثة وبديهية
+
+📱 **التوافق**
+• أندرويد (الهواتف والأجهزة اللوحية)
+• آي أو إس (آيفون وآيباد)
+• ويندوز، ماك أو إس، لينكس (أجهزة الكمبيوتر)
+
+💾 **الميزات التقنية**
+• قاعدة بيانات محلية SQLite
+• وضع عدم الاتصال الكامل
+• مشاركة الصور والمستندات
+• النسخ الاحتياطي التلقائي للتفضيلات
+
+⚡ **الأداء**
+• تحميل سريع للصور
+• تنقل سلس
+• تحسين الذاكرة
+• واجهة مستجيبة
+
+🔧 **التطوير**
+• إطار عمل فلاتر الحديث
+• هندسة معيارية
+• كود قابل للصيانة والتوسيع
+• الاختبارات والتوثيق
+
+📞 **الدعم**
+• واجهة بديهية
+• معالجة الأخطاء بأمان
+• رسائل المساعدة السياقية
+• التحديثات المنتظمة
+""";
+  }
+
+  /// Retourne les informations sur l'application selon la langue.
+  static String getInfoApplicationByLanguage(String languageCode) {
+    switch (languageCode) {
+      case 'fr':
+        return getInfoApplicationFrancais();
+      case 'en':
+        return getInfoApplicationAnglais();
+      case 'ar':
+      default:
+        return getInfoApplicationArabe();
+    }
   }
 
   /// Retourne la liste des Ahzab.

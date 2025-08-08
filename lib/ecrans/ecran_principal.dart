@@ -415,10 +415,18 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton.icon(
-            onPressed: _jourPrecedent,
-            icon: const Icon(Icons.arrow_left),
-            label: Text(localizations?.previous ?? 'Précédent'),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.green[100],
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              onPressed: _jourPrecedent,
+              icon: const Icon(Icons.arrow_left_rounded),
+              tooltip: localizations?.previous ?? 'Précédent',
+              iconSize: 32,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
           const SizedBox(width: 16.0),
           // Bouton de thème
@@ -445,10 +453,18 @@ class _EcranPrincipalState extends State<EcranPrincipal> {
             },
           ),
           const SizedBox(width: 16.0),
-          ElevatedButton.icon(
-            onPressed: _jourSuivant,
-            icon: const Icon(Icons.arrow_right),
-            label: Text(localizations?.next ?? 'Suivant'),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.green[100],
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              onPressed: _jourSuivant,
+              icon: const Icon(Icons.arrow_right_rounded),
+              tooltip: localizations?.next ?? 'Suivant',
+              iconSize: 32,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
         ],
       ),

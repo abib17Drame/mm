@@ -27,7 +27,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quranRecitation => 'Duaa Khatm Al-Quran';
 
   @override
-  String get aboutKhatma => 'À propos de la Khatma';
+  String get aboutKhatma => 'À propos de l\'application';
 
   @override
   String get aboutUs => 'À propos de nous';
@@ -109,24 +109,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get continueToNextHizb => 'Voulez-vous continuer vers le hizb suivant ?';
 
   @override
-  String get markDayCompleted => 'Marquer la journée terminée';
-
-  @override
-  String get continueReading => 'Continuer';
-
-  @override
-  String get stayHere => 'Rester ici';
-
-  @override
-  String get dayMarkedCompleted => 'Journée marquée comme terminée !';
-
-  @override
-  String get yes => 'Oui';
-
-  @override
-  String get no => 'Non';
-
-  @override
   String get hizb60Completed => 'Hizb 60 terminé';
 
   @override
@@ -136,6 +118,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get continueToDuaa => 'Voulez-vous continuer vers le Duaa de Khatm Al-Quran ?';
 
   @override
+  String get yes => 'Oui';
+
+  @override
+  String get no => 'Non';
+
+  @override
+  String get dayMarkedCompleted => 'Journée marquée comme terminée !';
+
+  @override
   String get khatmaCompleted => 'Khatma terminée';
 
   @override
@@ -143,4 +134,136 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get continueToNewKhatma => 'Voulez-vous commencer une nouvelle Khatma ?';
+
+  @override
+  String get aboutAppTitle => 'À propos de cette application';
+
+  @override
+  String get aboutAppDescription => 'Khatma Flutter est une application moderne développée pour faciliter la lecture quotidienne du Coran selon le programme traditionnel \"ختمة الإدارة\" (Khatma de l\'Administration).';
+
+  @override
+  String get aboutAppObjectives => 'Objectifs de l\'application';
+
+  @override
+  String get aboutAppQuranReading => 'Lecture du Coran : Afficher les pages du Coran avec zoom et navigation fluide';
+
+  @override
+  String get aboutAppDailyTracking => 'Suivi quotidien : Calculer automatiquement les hizb à lire chaque jour';
+
+  @override
+  String get aboutAppTemporalNavigation => 'Navigation temporelle : Permettre de naviguer entre les jours passés et futurs';
+
+  @override
+  String get aboutAppCompleteList => 'Liste complète : Afficher tous les 60 hizb avec leurs détails';
+
+  @override
+  String get aboutAppCompletionDuaa => 'Dua\'a de fin : Inclure le dua\'a complet de Khatm Al-Quran';
+
+  @override
+  String get aboutAppKhatmaDates => 'Dates des Khatmas : Calculer et afficher les prochaines dates';
+
+  @override
+  String get aboutAppMultilingual => 'Fonctionnalités multilingues';
+
+  @override
+  String get aboutAppMultilingualDesc => 'Support complet en français, arabe et anglais';
+
+  @override
+  String get aboutAppLanguageChange => 'Changement dynamique de langue';
+
+  @override
+  String get aboutAppInterfaceAdapted => 'Interface adaptée à chaque culture';
+
+  @override
+  String get aboutAppPersonalization => 'Personnalisation';
+
+  @override
+  String get aboutAppLightDarkMode => 'Mode clair et mode sombre';
+
+  @override
+  String get aboutAppAdaptiveThemes => 'Thèmes adaptatifs';
+
+  @override
+  String get aboutAppModernInterface => 'Interface moderne et intuitive';
+
+  @override
+  String get aboutAppCompatibility => 'Compatibilité';
+
+  @override
+  String get aboutAppAndroid => 'Android (téléphones et tablettes)';
+
+  @override
+  String get aboutAppIOS => 'iOS (iPhone et iPad)';
+
+  @override
+  String get aboutAppWindows => 'Windows (ordinateurs)';
+
+  @override
+  String get aboutAppMacOS => 'macOS (Mac)';
+
+  @override
+  String get aboutAppLinux => 'Linux (ordinateurs)';
+
+  @override
+  String get aboutAppTechnicalFeatures => 'Fonctionnalités techniques';
+
+  @override
+  String get aboutAppSQLite => 'Base de données locale SQLite';
+
+  @override
+  String get aboutAppOfflineMode => 'Mode hors ligne complet';
+
+  @override
+  String get aboutAppImageSharing => 'Partage d\'images et de documents';
+
+  @override
+  String get aboutAppPDFExport => 'Export PDF du dua\'a';
+
+  @override
+  String get aboutAppAutoBackup => 'Sauvegarde automatique des préférences';
+
+  @override
+  String get aboutAppPerformance => 'Performance';
+
+  @override
+  String get aboutAppFastLoading => 'Chargement rapide des images';
+
+  @override
+  String get aboutAppSmoothNavigation => 'Navigation fluide';
+
+  @override
+  String get aboutAppMemoryOptimization => 'Optimisation mémoire';
+
+  @override
+  String get aboutAppResponsiveInterface => 'Interface réactive';
+
+  @override
+  String get aboutAppDevelopment => 'Développement';
+
+  @override
+  String get aboutAppFlutterFramework => 'Framework Flutter moderne';
+
+  @override
+  String get aboutAppModularArchitecture => 'Architecture modulaire';
+
+  @override
+  String get aboutAppMaintainableCode => 'Code maintenable et extensible';
+
+  @override
+  String get aboutAppTestsDocumentation => 'Tests et documentation';
+
+  @override
+  String get aboutAppSupport => 'Support';
+
+  @override
+  String get aboutAppIntuitiveInterface => 'Interface intuitive';
+
+  @override
+  String get aboutAppErrorHandling => 'Gestion d\'erreurs gracieuse';
+
+  @override
+  String get aboutAppHelpMessages => 'Messages d\'aide contextuels';
+
+  @override
+  String get aboutAppRegularUpdates => 'Mises à jour régulières';
 }

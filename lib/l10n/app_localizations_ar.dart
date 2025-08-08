@@ -27,7 +27,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quranRecitation => 'دعاء ختم القرآن';
 
   @override
-  String get aboutKhatma => 'عن الختمة';
+  String get aboutKhatma => 'عن التطبيق';
 
   @override
   String get aboutUs => 'عنا';
@@ -96,29 +96,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String pageInfo(int current, int total) {
-    return 'صفحة $current من $total';
+    return 'الصفحة $current من $total';
   }
 
   @override
-  String get hizbCompleted => 'الحزب مكتمل';
+  String get hizbCompleted => 'تم إكمال الحزب';
 
   @override
-  String get hizbCompletionMessage => 'تهانينا ! لقد أكملت هذا الحزب.';
+  String get hizbCompletionMessage => 'تهانينا! لقد أكملت هذا الحزب.';
 
   @override
   String get continueToNextHizb => 'هل تريد المتابعة إلى الحزب التالي؟';
 
   @override
-  String get markDayCompleted => 'تحديد اليوم كمكتمل';
+  String get hizb60Completed => 'تم إكمال الحزب 60';
 
   @override
-  String get continueReading => 'متابعة';
+  String get hizb60CompletionMessage => 'تهانينا! لقد أكملت آخر حزب من القرآن.';
 
   @override
-  String get stayHere => 'البقاء هنا';
-
-  @override
-  String get dayMarkedCompleted => 'تم تحديد اليوم كمكتمل !';
+  String get continueToDuaa => 'هل تريد المتابعة إلى دعاء ختم القرآن؟';
 
   @override
   String get yes => 'نعم';
@@ -127,20 +124,146 @@ class AppLocalizationsAr extends AppLocalizations {
   String get no => 'لا';
 
   @override
-  String get hizb60Completed => 'الحزب 60 مكتمل';
+  String get dayMarkedCompleted => 'تم تحديد اليوم كمكتمل!';
 
   @override
-  String get hizb60CompletionMessage => 'تهانينا ! لقد أكملت آخر حزب في القرآن.';
+  String get khatmaCompleted => 'تم إكمال الختمة';
 
   @override
-  String get continueToDuaa => 'هل تريد المتابعة إلى دعاء ختم القرآن؟';
-
-  @override
-  String get khatmaCompleted => 'الختمة مكتملة';
-
-  @override
-  String get khatmaCompletionMessage => 'تهانينا ! لقد أكملت الختمة كاملة.';
+  String get khatmaCompletionMessage => 'تهانينا! لقد أكملت الختمة الكاملة.';
 
   @override
   String get continueToNewKhatma => 'هل تريد بدء ختمة جديدة؟';
+
+  @override
+  String get aboutAppTitle => 'عن هذا التطبيق';
+
+  @override
+  String get aboutAppDescription => 'ختمة فلاتر هو تطبيق حديث تم تطويره لتسهيل القراءة اليومية للقرآن الكريم حسب البرنامج التقليدي \"ختمة الإدارة\".';
+
+  @override
+  String get aboutAppObjectives => 'أهداف التطبيق';
+
+  @override
+  String get aboutAppQuranReading => 'قراءة القرآن : عرض صفحات القرآن مع التكبير والتنقل السلس';
+
+  @override
+  String get aboutAppDailyTracking => 'المتابعة اليومية : حساب الأحزاب التي يجب قراءتها كل يوم تلقائياً';
+
+  @override
+  String get aboutAppTemporalNavigation => 'التنقل الزمني : السماح بالتنقل بين الأيام الماضية والمستقبلية';
+
+  @override
+  String get aboutAppCompleteList => 'القائمة الكاملة : عرض جميع الأحزاب الستين مع تفاصيلها';
+
+  @override
+  String get aboutAppCompletionDuaa => 'دعاء الختم : تضمين دعاء ختم القرآن الكريم الكامل';
+
+  @override
+  String get aboutAppKhatmaDates => 'تواريخ الختمات : حساب وعرض التواريخ القادمة';
+
+  @override
+  String get aboutAppMultilingual => 'الميزات متعددة اللغات';
+
+  @override
+  String get aboutAppMultilingualDesc => 'دعم كامل بالفرنسية والعربية والإنجليزية';
+
+  @override
+  String get aboutAppLanguageChange => 'تغيير اللغة ديناميكياً';
+
+  @override
+  String get aboutAppInterfaceAdapted => 'واجهة متكيفة مع كل ثقافة';
+
+  @override
+  String get aboutAppPersonalization => 'التخصيص';
+
+  @override
+  String get aboutAppLightDarkMode => 'الوضع الفاتح والوضع المظلم';
+
+  @override
+  String get aboutAppAdaptiveThemes => 'السمات المتكيفة';
+
+  @override
+  String get aboutAppModernInterface => 'واجهة حديثة وبديهية';
+
+  @override
+  String get aboutAppCompatibility => 'التوافق';
+
+  @override
+  String get aboutAppAndroid => 'أندرويد (الهواتف والأجهزة اللوحية)';
+
+  @override
+  String get aboutAppIOS => 'آي أو إس (آيفون وآيباد)';
+
+  @override
+  String get aboutAppWindows => 'ويندوز (أجهزة الكمبيوتر)';
+
+  @override
+  String get aboutAppMacOS => 'ماك أو إس (ماك)';
+
+  @override
+  String get aboutAppLinux => 'لينكس (أجهزة الكمبيوتر)';
+
+  @override
+  String get aboutAppTechnicalFeatures => 'الميزات التقنية';
+
+  @override
+  String get aboutAppSQLite => 'قاعدة بيانات محلية SQLite';
+
+  @override
+  String get aboutAppOfflineMode => 'وضع عدم الاتصال الكامل';
+
+  @override
+  String get aboutAppImageSharing => 'مشاركة الصور والمستندات';
+
+  @override
+  String get aboutAppPDFExport => 'تصدير PDF للدعاء';
+
+  @override
+  String get aboutAppAutoBackup => 'النسخ الاحتياطي التلقائي للتفضيلات';
+
+  @override
+  String get aboutAppPerformance => 'الأداء';
+
+  @override
+  String get aboutAppFastLoading => 'تحميل سريع للصور';
+
+  @override
+  String get aboutAppSmoothNavigation => 'تنقل سلس';
+
+  @override
+  String get aboutAppMemoryOptimization => 'تحسين الذاكرة';
+
+  @override
+  String get aboutAppResponsiveInterface => 'واجهة مستجيبة';
+
+  @override
+  String get aboutAppDevelopment => 'التطوير';
+
+  @override
+  String get aboutAppFlutterFramework => 'إطار عمل فلاتر الحديث';
+
+  @override
+  String get aboutAppModularArchitecture => 'هندسة معيارية';
+
+  @override
+  String get aboutAppMaintainableCode => 'كود قابل للصيانة والتوسيع';
+
+  @override
+  String get aboutAppTestsDocumentation => 'الاختبارات والتوثيق';
+
+  @override
+  String get aboutAppSupport => 'الدعم';
+
+  @override
+  String get aboutAppIntuitiveInterface => 'واجهة بديهية';
+
+  @override
+  String get aboutAppErrorHandling => 'معالجة الأخطاء بأمان';
+
+  @override
+  String get aboutAppHelpMessages => 'رسائل المساعدة السياقية';
+
+  @override
+  String get aboutAppRegularUpdates => 'التحديثات المنتظمة';
 }

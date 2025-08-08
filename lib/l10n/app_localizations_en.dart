@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quranRecitation => 'Quran Completion Duaa';
 
   @override
-  String get aboutKhatma => 'About Khatma';
+  String get aboutKhatma => 'About the application';
 
   @override
   String get aboutUs => 'About Us';
@@ -100,25 +100,22 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get hizbCompleted => 'Hizb Completed';
+  String get hizbCompleted => 'Hizb completed';
 
   @override
   String get hizbCompletionMessage => 'Congratulations! You have completed this hizb.';
 
   @override
-  String get continueToNextHizb => 'Would you like to continue to the next hizb?';
+  String get continueToNextHizb => 'Do you want to continue to the next hizb?';
 
   @override
-  String get markDayCompleted => 'Mark Day as Completed';
+  String get hizb60Completed => 'Hizb 60 completed';
 
   @override
-  String get continueReading => 'Continue';
+  String get hizb60CompletionMessage => 'Congratulations! You have completed the last hizb of the Quran.';
 
   @override
-  String get stayHere => 'Stay Here';
-
-  @override
-  String get dayMarkedCompleted => 'Day marked as completed!';
+  String get continueToDuaa => 'Do you want to continue to the Khatm Al-Quran Duaa?';
 
   @override
   String get yes => 'Yes';
@@ -127,20 +124,146 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no => 'No';
 
   @override
-  String get hizb60Completed => 'Hizb 60 Completed';
+  String get dayMarkedCompleted => 'Day marked as completed!';
 
   @override
-  String get hizb60CompletionMessage => 'Congratulations! You have completed the last hizb of the Quran.';
+  String get khatmaCompleted => 'Khatma completed';
 
   @override
-  String get continueToDuaa => 'Would you like to continue to the Duaa of Khatm Al-Quran?';
+  String get khatmaCompletionMessage => 'Congratulations! You have completed the complete Khatma.';
 
   @override
-  String get khatmaCompleted => 'Khatma Completed';
+  String get continueToNewKhatma => 'Do you want to start a new Khatma?';
 
   @override
-  String get khatmaCompletionMessage => 'Congratulations! You have completed the full Khatma.';
+  String get aboutAppTitle => 'About this application';
 
   @override
-  String get continueToNewKhatma => 'Would you like to start a new Khatma?';
+  String get aboutAppDescription => 'Khatma Flutter is a modern application developed to facilitate daily Quran reading according to the traditional \"ختمة الإدارة\" (Administration Khatma) program.';
+
+  @override
+  String get aboutAppObjectives => 'Application objectives';
+
+  @override
+  String get aboutAppQuranReading => 'Quran Reading : Display Quran pages with zoom and smooth navigation';
+
+  @override
+  String get aboutAppDailyTracking => 'Daily tracking : Automatically calculate hizb to read each day';
+
+  @override
+  String get aboutAppTemporalNavigation => 'Temporal navigation : Allow navigation between past and future days';
+
+  @override
+  String get aboutAppCompleteList => 'Complete list : Display all 60 hizb with their details';
+
+  @override
+  String get aboutAppCompletionDuaa => 'Completion dua\'a : Include the complete Khatm Al-Quran dua\'a';
+
+  @override
+  String get aboutAppKhatmaDates => 'Khatma dates : Calculate and display upcoming dates';
+
+  @override
+  String get aboutAppMultilingual => 'Multilingual features';
+
+  @override
+  String get aboutAppMultilingualDesc => 'Complete support in French, Arabic and English';
+
+  @override
+  String get aboutAppLanguageChange => 'Dynamic language switching';
+
+  @override
+  String get aboutAppInterfaceAdapted => 'Interface adapted to each culture';
+
+  @override
+  String get aboutAppPersonalization => 'Personalization';
+
+  @override
+  String get aboutAppLightDarkMode => 'Light and dark mode';
+
+  @override
+  String get aboutAppAdaptiveThemes => 'Adaptive themes';
+
+  @override
+  String get aboutAppModernInterface => 'Modern and intuitive interface';
+
+  @override
+  String get aboutAppCompatibility => 'Compatibility';
+
+  @override
+  String get aboutAppAndroid => 'Android (phones and tablets)';
+
+  @override
+  String get aboutAppIOS => 'iOS (iPhone and iPad)';
+
+  @override
+  String get aboutAppWindows => 'Windows (computers)';
+
+  @override
+  String get aboutAppMacOS => 'macOS (Mac)';
+
+  @override
+  String get aboutAppLinux => 'Linux (computers)';
+
+  @override
+  String get aboutAppTechnicalFeatures => 'Technical features';
+
+  @override
+  String get aboutAppSQLite => 'Local SQLite database';
+
+  @override
+  String get aboutAppOfflineMode => 'Complete offline mode';
+
+  @override
+  String get aboutAppImageSharing => 'Image and document sharing';
+
+  @override
+  String get aboutAppPDFExport => 'PDF export of dua\'a';
+
+  @override
+  String get aboutAppAutoBackup => 'Automatic preference backup';
+
+  @override
+  String get aboutAppPerformance => 'Performance';
+
+  @override
+  String get aboutAppFastLoading => 'Fast image loading';
+
+  @override
+  String get aboutAppSmoothNavigation => 'Smooth navigation';
+
+  @override
+  String get aboutAppMemoryOptimization => 'Memory optimization';
+
+  @override
+  String get aboutAppResponsiveInterface => 'Responsive interface';
+
+  @override
+  String get aboutAppDevelopment => 'Development';
+
+  @override
+  String get aboutAppFlutterFramework => 'Modern Flutter framework';
+
+  @override
+  String get aboutAppModularArchitecture => 'Modular architecture';
+
+  @override
+  String get aboutAppMaintainableCode => 'Maintainable and extensible code';
+
+  @override
+  String get aboutAppTestsDocumentation => 'Tests and documentation';
+
+  @override
+  String get aboutAppSupport => 'Support';
+
+  @override
+  String get aboutAppIntuitiveInterface => 'Intuitive interface';
+
+  @override
+  String get aboutAppErrorHandling => 'Graceful error handling';
+
+  @override
+  String get aboutAppHelpMessages => 'Contextual help messages';
+
+  @override
+  String get aboutAppRegularUpdates => 'Regular updates';
 }

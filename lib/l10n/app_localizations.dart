@@ -136,7 +136,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutKhatma.
   ///
   /// In en, this message translates to:
-  /// **'About Khatma'**
+  /// **'About the application'**
   String get aboutKhatma;
 
   /// No description provided for @aboutUs.
@@ -262,7 +262,7 @@ abstract class AppLocalizations {
   /// No description provided for @hizbCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Hizb Completed'**
+  /// **'Hizb completed'**
   String get hizbCompleted;
 
   /// No description provided for @hizbCompletionMessage.
@@ -274,32 +274,26 @@ abstract class AppLocalizations {
   /// No description provided for @continueToNextHizb.
   ///
   /// In en, this message translates to:
-  /// **'Would you like to continue to the next hizb?'**
+  /// **'Do you want to continue to the next hizb?'**
   String get continueToNextHizb;
 
-  /// No description provided for @markDayCompleted.
+  /// No description provided for @hizb60Completed.
   ///
   /// In en, this message translates to:
-  /// **'Mark Day as Completed'**
-  String get markDayCompleted;
+  /// **'Hizb 60 completed'**
+  String get hizb60Completed;
 
-  /// No description provided for @continueReading.
+  /// No description provided for @hizb60CompletionMessage.
   ///
   /// In en, this message translates to:
-  /// **'Continue'**
-  String get continueReading;
+  /// **'Congratulations! You have completed the last hizb of the Quran.'**
+  String get hizb60CompletionMessage;
 
-  /// No description provided for @stayHere.
+  /// No description provided for @continueToDuaa.
   ///
   /// In en, this message translates to:
-  /// **'Stay Here'**
-  String get stayHere;
-
-  /// No description provided for @dayMarkedCompleted.
-  ///
-  /// In en, this message translates to:
-  /// **'Day marked as completed!'**
-  String get dayMarkedCompleted;
+  /// **'Do you want to continue to the Khatm Al-Quran Duaa?'**
+  String get continueToDuaa;
 
   /// No description provided for @yes.
   ///
@@ -313,41 +307,293 @@ abstract class AppLocalizations {
   /// **'No'**
   String get no;
 
-  /// No description provided for @hizb60Completed.
+  /// No description provided for @dayMarkedCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Hizb 60 Completed'**
-  String get hizb60Completed;
-
-  /// No description provided for @hizb60CompletionMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Congratulations! You have completed the last hizb of the Quran.'**
-  String get hizb60CompletionMessage;
-
-  /// No description provided for @continueToDuaa.
-  ///
-  /// In en, this message translates to:
-  /// **'Would you like to continue to the Duaa of Khatm Al-Quran?'**
-  String get continueToDuaa;
+  /// **'Day marked as completed!'**
+  String get dayMarkedCompleted;
 
   /// No description provided for @khatmaCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Khatma Completed'**
+  /// **'Khatma completed'**
   String get khatmaCompleted;
 
   /// No description provided for @khatmaCompletionMessage.
   ///
   /// In en, this message translates to:
-  /// **'Congratulations! You have completed the full Khatma.'**
+  /// **'Congratulations! You have completed the complete Khatma.'**
   String get khatmaCompletionMessage;
 
   /// No description provided for @continueToNewKhatma.
   ///
   /// In en, this message translates to:
-  /// **'Would you like to start a new Khatma?'**
+  /// **'Do you want to start a new Khatma?'**
   String get continueToNewKhatma;
+
+  /// No description provided for @aboutAppTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About this application'**
+  String get aboutAppTitle;
+
+  /// No description provided for @aboutAppDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Flutter is a modern application developed to facilitate daily Quran reading according to the traditional \"ختمة الإدارة\" (Administration Khatma) program.'**
+  String get aboutAppDescription;
+
+  /// No description provided for @aboutAppObjectives.
+  ///
+  /// In en, this message translates to:
+  /// **'Application objectives'**
+  String get aboutAppObjectives;
+
+  /// No description provided for @aboutAppQuranReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran Reading : Display Quran pages with zoom and smooth navigation'**
+  String get aboutAppQuranReading;
+
+  /// No description provided for @aboutAppDailyTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily tracking : Automatically calculate hizb to read each day'**
+  String get aboutAppDailyTracking;
+
+  /// No description provided for @aboutAppTemporalNavigation.
+  ///
+  /// In en, this message translates to:
+  /// **'Temporal navigation : Allow navigation between past and future days'**
+  String get aboutAppTemporalNavigation;
+
+  /// No description provided for @aboutAppCompleteList.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete list : Display all 60 hizb with their details'**
+  String get aboutAppCompleteList;
+
+  /// No description provided for @aboutAppCompletionDuaa.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion dua\'a : Include the complete Khatm Al-Quran dua\'a'**
+  String get aboutAppCompletionDuaa;
+
+  /// No description provided for @aboutAppKhatmaDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma dates : Calculate and display upcoming dates'**
+  String get aboutAppKhatmaDates;
+
+  /// No description provided for @aboutAppMultilingual.
+  ///
+  /// In en, this message translates to:
+  /// **'Multilingual features'**
+  String get aboutAppMultilingual;
+
+  /// No description provided for @aboutAppMultilingualDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete support in French, Arabic and English'**
+  String get aboutAppMultilingualDesc;
+
+  /// No description provided for @aboutAppLanguageChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic language switching'**
+  String get aboutAppLanguageChange;
+
+  /// No description provided for @aboutAppInterfaceAdapted.
+  ///
+  /// In en, this message translates to:
+  /// **'Interface adapted to each culture'**
+  String get aboutAppInterfaceAdapted;
+
+  /// No description provided for @aboutAppPersonalization.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalization'**
+  String get aboutAppPersonalization;
+
+  /// No description provided for @aboutAppLightDarkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light and dark mode'**
+  String get aboutAppLightDarkMode;
+
+  /// No description provided for @aboutAppAdaptiveThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Adaptive themes'**
+  String get aboutAppAdaptiveThemes;
+
+  /// No description provided for @aboutAppModernInterface.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern and intuitive interface'**
+  String get aboutAppModernInterface;
+
+  /// No description provided for @aboutAppCompatibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Compatibility'**
+  String get aboutAppCompatibility;
+
+  /// No description provided for @aboutAppAndroid.
+  ///
+  /// In en, this message translates to:
+  /// **'Android (phones and tablets)'**
+  String get aboutAppAndroid;
+
+  /// No description provided for @aboutAppIOS.
+  ///
+  /// In en, this message translates to:
+  /// **'iOS (iPhone and iPad)'**
+  String get aboutAppIOS;
+
+  /// No description provided for @aboutAppWindows.
+  ///
+  /// In en, this message translates to:
+  /// **'Windows (computers)'**
+  String get aboutAppWindows;
+
+  /// No description provided for @aboutAppMacOS.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS (Mac)'**
+  String get aboutAppMacOS;
+
+  /// No description provided for @aboutAppLinux.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux (computers)'**
+  String get aboutAppLinux;
+
+  /// No description provided for @aboutAppTechnicalFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical features'**
+  String get aboutAppTechnicalFeatures;
+
+  /// No description provided for @aboutAppSQLite.
+  ///
+  /// In en, this message translates to:
+  /// **'Local SQLite database'**
+  String get aboutAppSQLite;
+
+  /// No description provided for @aboutAppOfflineMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete offline mode'**
+  String get aboutAppOfflineMode;
+
+  /// No description provided for @aboutAppImageSharing.
+  ///
+  /// In en, this message translates to:
+  /// **'Image and document sharing'**
+  String get aboutAppImageSharing;
+
+  /// No description provided for @aboutAppPDFExport.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF export of dua\'a'**
+  String get aboutAppPDFExport;
+
+  /// No description provided for @aboutAppAutoBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic preference backup'**
+  String get aboutAppAutoBackup;
+
+  /// No description provided for @aboutAppPerformance.
+  ///
+  /// In en, this message translates to:
+  /// **'Performance'**
+  String get aboutAppPerformance;
+
+  /// No description provided for @aboutAppFastLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast image loading'**
+  String get aboutAppFastLoading;
+
+  /// No description provided for @aboutAppSmoothNavigation.
+  ///
+  /// In en, this message translates to:
+  /// **'Smooth navigation'**
+  String get aboutAppSmoothNavigation;
+
+  /// No description provided for @aboutAppMemoryOptimization.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory optimization'**
+  String get aboutAppMemoryOptimization;
+
+  /// No description provided for @aboutAppResponsiveInterface.
+  ///
+  /// In en, this message translates to:
+  /// **'Responsive interface'**
+  String get aboutAppResponsiveInterface;
+
+  /// No description provided for @aboutAppDevelopment.
+  ///
+  /// In en, this message translates to:
+  /// **'Development'**
+  String get aboutAppDevelopment;
+
+  /// No description provided for @aboutAppFlutterFramework.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern Flutter framework'**
+  String get aboutAppFlutterFramework;
+
+  /// No description provided for @aboutAppModularArchitecture.
+  ///
+  /// In en, this message translates to:
+  /// **'Modular architecture'**
+  String get aboutAppModularArchitecture;
+
+  /// No description provided for @aboutAppMaintainableCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintainable and extensible code'**
+  String get aboutAppMaintainableCode;
+
+  /// No description provided for @aboutAppTestsDocumentation.
+  ///
+  /// In en, this message translates to:
+  /// **'Tests and documentation'**
+  String get aboutAppTestsDocumentation;
+
+  /// No description provided for @aboutAppSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get aboutAppSupport;
+
+  /// No description provided for @aboutAppIntuitiveInterface.
+  ///
+  /// In en, this message translates to:
+  /// **'Intuitive interface'**
+  String get aboutAppIntuitiveInterface;
+
+  /// No description provided for @aboutAppErrorHandling.
+  ///
+  /// In en, this message translates to:
+  /// **'Graceful error handling'**
+  String get aboutAppErrorHandling;
+
+  /// No description provided for @aboutAppHelpMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Contextual help messages'**
+  String get aboutAppHelpMessages;
+
+  /// No description provided for @aboutAppRegularUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular updates'**
+  String get aboutAppRegularUpdates;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
